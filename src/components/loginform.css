@@ -1,221 +1,227 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
-body{
-    background-image: url(../assets/background.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+body {
+  background-image: url(../assets/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
+.App {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginpage {
+  background-color: white;
+  width: 24em;
+  height: 30em;
+  position: relative;
+  border-radius: 1em;
+  box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.App{
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+form {
+  height: 30em;
+  width: 25em;
+  padding: 20px;
 }
-.loginpage{
+.login-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -10px;
+  margin-bottom: 38px;
+  margin-top: 15px;
+}
+.username,
+.password {
+  margin: 20px;
+}
+sup {
+  color: red;
+  top: -2px;
+  font-size: 95%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+input {
+  border: none;
+  background-color: rgb(229, 226, 226);
+  height: 4em;
+  width: 85%;
+  border-radius: 0.25em;
+  /* text-align: center; */
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+input:focus {
+  outline-color: rgb(32, 171, 255);
+}
+
+a {
+  margin: 20px;
+  padding: 10px;
+}
+
+.button {
+  width: 15em;
+  padding: 10px 20px;
+  background-color: rgb(32, 177, 255);
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 60px;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.button:active {
+  background-color: #3e8e41;
+}
+.login-btn:hover {
+  transform: scale(1.25);
+}
+
+@media (max-width: 768px) {
+  .loginpage {
     background-color: white;
-    width: 30em;
-    height: 35em;
+    width: 23em;
+    height: 27em;
     position: relative;
     border-radius: 1em;
-    box-shadow: 0 0.188em 1.550em rgb(156,156,156);
+    box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-}
-
-form{
-    height: 30em;
-    width: 25em;
-    padding: 20px;
-}
-.login-heading{
+  }
+  .login-heading {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: -10px;
-    margin-bottom: 33px;
-}
-.username , .password{
-    margin: 20px;
-}
-sup {
-    color: red;
-    top: -2px;
-    font-size: 95%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    text-align: center;
   }
-input{
-    border: none;
-    background-color: rgb(229,226,226);
-    height: 4em;
-    width: 85%;
-    border-radius: 0.25em;
-    /* text-align: center; */
-    padding: 2em;
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-}
-
-input:focus{
-    outline-color: rgb(32,171,255);
-}
-
-a{
-    margin: 20px;
-    padding: 10px;
-}
-
-
   .button {
-    width: 15em;
+    width: 175px;
+    margin-left: 90px;
+    margin-top: 50px;
+    margin-right: 0px;
+    margin-bottom: 0px;
     padding: 10px 20px;
-    background-color: rgb(32,177,255);
+    background-color: rgb(32, 177, 255);
     color: #fff;
     font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 60px;
   }
-  
-  .button:hover {
-    background-color: #45a049;
-  }
-  
-  .button:active {
-    background-color: #3e8e41;
-  }
-.login-btn:hover{transform: scale(1.25);}
-
-@media (max-width: 768px) {
-    .loginpage{
-        background-color: white;
-        width: 25em;
-        height: 30em;
-        position: relative;
-        border-radius: 1em;
-        box-shadow: 0 0.188em 1.550em rgb(156,156,156);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-    }
-    .login-heading {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5px;
-        margin-bottom: 25px;
-    }
-    .button{
-        width: 175px;
-        margin-left: 80px;
-        margin-top: 26px;
-        
-    }
 }
 
-@media (max-width: 500px){
-.login-heading{
+@media (max-width: 500px) {
+  .login-heading {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3px;
+    margin-top: 20px;
     margin-bottom: 15px;
+  }
+  .loginpage {
+    background-color: white;
+    width: 20em;
+    height: 25em;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  input {
+    width: 70%;
+    margin-left: 55px;
+    margin-top: 10px;
+  }
+  .username,
+  .password {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  a {
+    margin-left: 21px;
+    padding: 0px;
+  }
+  .button {
+    margin: 35px;
+    margin-left: 64px;
+  }
 }
-    .loginpage{
-        background-color: white;
-        width: 20em;
-        height: 25em;
-        position: relative;
-        border-radius: 1em;
-        box-shadow: 0 0.188em 1.550em rgb(156,156,156);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-    }
 
-    input{
-        width: 70%;
-        margin-left: 55px;
-        margin-top: 10px;
-    }
-    .username, .password{
-        margin: 55px;
-        margin-top: 10px;
-        padding-top: 10px;
-    }
-    a{
-        margin-left: 55px;
-        padding: 0px;
-    }
-    .button{
-        margin: 10px;
-        margin-left: 90px;
-    }
-
+@media (max-width: 425px) {
+  .App {
+    height: 103vh;
+  }
+  .loginpage {
+    background-color: white;
+    width: 20em;
+    height: 25em;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .button {
+    width: 175px;
+  }
 }
+@media (max-width: 375px) {
+  .App {
+    height: 113vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 18px;
+  }
+  .loginpage {
+    background-color: white;
+    width: 18em;
+    height: 24em;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
 
-@media (max-width: 400px){
-
-    .App{
-        height: 103vh;
-    }
-    .loginpage{
-        background-color: white;
-        width: 20em;
-        height: 25em;
-        position: relative;
-        border-radius: 1em;
-        box-shadow: 0 0.188em 1.550em rgb(156,156,156);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-    }
-    .button{
-        width: 175px;
-    }
-
-}
-@media (max-width: 375px){
-
-    .App {
-        height: 113vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .loginpage{
-        background-color: white;
-        width: 18em;
-        height: 24em;
-        position: relative;
-        border-radius: 1em;
-        box-shadow: 0 0.188em 1.550em rgb(156,156,156);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-    }
-    
-    .login-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 25vh; /* Optional - Adjust to your needs */
-
-      }
-
+  .login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh; /* Optional - Adjust to your needs */
+  }
 }

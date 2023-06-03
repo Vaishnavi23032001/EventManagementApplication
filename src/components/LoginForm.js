@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./loginform.css";
-import { toast } from 'react-toastify';
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [loginDetails, setLoginDetails] = useState({
@@ -25,7 +25,7 @@ const LoginForm = () => {
       loginDetails.username.trim() === "" ||
       loginDetails.password.trim() === ""
     ) {
-      toast.error("Username or password is required.");
+      alert("Username or password is required.");
       return;
     }
     console.log(loginDetails);
@@ -54,12 +54,15 @@ const LoginForm = () => {
           onChange={(e) => handleChange(e, "password")}
         />
 
-        <a href="#">Forget Password</a>
+        {/* <a href="#">Forget Password</a> */}
+        <Link to="">Forget Password</Link>
         <br />
-        <br />
-        <a href="#" to="/SignUp">
-          Create a new account
-        </a>
+
+        {/* <p>
+          Don't have an account? <Link to="/signup">Create a new account</Link>
+        </p> */}
+        <Link to="/SignUp">Create a new account</Link>
+        
         <button text="submit" className="button">
           Login
         </button>
