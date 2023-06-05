@@ -9,6 +9,7 @@ const PasswordErrorMessage = () => {
 };
 
 function SignUp() {
+  const [userName,setUserName] = useState("");
   const [fullName, setFullName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -19,6 +20,7 @@ function SignUp() {
   const [role, setRole] = useState("role");
   const getIsFormValid = () => {
     return (
+      userName &&
       fullName &&
       //validateEmail(email) &&
       password.value.length >= 8 &&
@@ -27,6 +29,7 @@ function SignUp() {
   };
 
   const clearForm = () => {
+    setUserName("");
     setFullName("");
     setMobileNumber("");
     setEmail("");
@@ -48,6 +51,18 @@ function SignUp() {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <h2>Sign Up</h2>
+          <div className="Field">
+            <label>
+              Username<sup>*</sup>
+            </label>
+            <input
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+              placeholder="Username"
+            />
+          </div>
           <div className="Field">
             <label>
               Full name <sup>*</sup>
