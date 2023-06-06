@@ -1,7 +1,7 @@
 .SignUp {
   background-color: white;
 }
-form {
+.signup_form {
   height: 33em;
   width: 27em;
   padding: 10px;
@@ -34,7 +34,7 @@ sup {
   vertical-align: baseline;
 }
 
-input,
+.signup_input,
 select {
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -90,7 +90,7 @@ button[disabled] {
 }
 
 @media (max-width: 500px) {
-  form {
+    .signup_form {
     height: 28em;
     width: 20em;
     padding: 10px;
@@ -108,7 +108,7 @@ button[disabled] {
     text-align: center;
     margin-bottom: 5px;
   }
-  input,
+  .signup_input,
   select {
     border-radius: 4px;
     border: 1px solid #ccc;
@@ -139,7 +139,7 @@ button[disabled] {
     align-items: center;
     margin-left: 0px;
   }
-  form {
+  .signup_form {
     height: 26em;
     width: 19em;
     padding: 10px;
@@ -153,7 +153,7 @@ button[disabled] {
     flex-direction: column;
     height: 396px;
   }
-  input,
+  .signup_input,
   select {
     border-radius: 4px;
     border: 1px solid #ccc;

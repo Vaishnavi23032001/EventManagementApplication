@@ -28,7 +28,7 @@ body {
   justify-content: space-around;
 }
 
-.loginpage form {
+.loginpage-form {
   height: 30em;
   width: 25em;
   padding: 20px;
@@ -44,6 +44,7 @@ body {
 .username,
 .password {
   margin: 20px;
+  margin-left: 30px;
 }
 sup {
   color: red;
@@ -64,6 +65,9 @@ input {
   display: flex;
   flex-direction: column;
   margin: 20px;
+  margin-bottom: 12px;
+  margin-top: 5px;
+  margin-left: 29px;
 }
 
 input:focus {
@@ -85,6 +89,7 @@ a {
   border-radius: 4px;
   cursor: pointer;
   margin: 60px;
+  margin-left: 70px;
 }
 
 .button:hover {
@@ -158,7 +163,7 @@ a {
 
   input {
     width: 70%;
-    margin-left: 55px;
+    margin-left: 32px;
     margin-top: 10px;
   }
   .username,
@@ -167,7 +172,7 @@ a {
     padding-top: 10px;
   }
   a {
-    margin-left: 21px;
+    margin-left: 32px;
     padding: 0px;
   }
   .button {

@@ -48,26 +48,15 @@ function SignUp() {
 
   return (
     <div className="SignUp">
-      <form onSubmit={handleSubmit}>
+      <form className="signup_form" onSubmit={handleSubmit}>
         <fieldset>
           <h2>Sign Up</h2>
-          <div className="Field">
-            <label>
-              Username<sup>*</sup>
-            </label>
-            <input
-              value={userName}
-              onChange={(e) => {
-                setUserName(e.target.value);
-              }}
-              placeholder="Username"
-            />
-          </div>
+          
           <div className="Field">
             <label>
               Full name <sup>*</sup>
             </label>
-            <input
+            <input className="signup_input"
               value={fullName}
               onChange={(e) => {
                 setFullName(e.target.value);
@@ -81,6 +70,7 @@ function SignUp() {
               Email address <sup>*</sup>
             </label>
             <input
+            className="signup_input"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -93,6 +83,7 @@ function SignUp() {
               Mobile Number <sup>*</sup>
             </label>
             <input
+            className="signup_input"
               value={mobileNumber}
               onChange={(e) => {
                 setMobileNumber(e.target.value);
@@ -102,9 +93,23 @@ function SignUp() {
           </div>
           <div className="Field">
             <label>
+              Username<sup>*</sup>
+            </label>
+            <input
+            className="signup_input"
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+              placeholder="Username"
+            />
+          </div>
+          <div className="Field">
+            <label>
               Password <sup>*</sup>
             </label>
             <input
+            className="signup_input"
               value={password.value}
               type="password"
               onChange={(e) => {

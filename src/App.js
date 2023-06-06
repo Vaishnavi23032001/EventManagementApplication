@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import SignUp from "./components/SignUp";
+//import EventPage from "./components/EventPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
+      {/* <EventPage/> */}
     </div>
   );
 }
