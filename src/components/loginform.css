@@ -1,6 +1,8 @@
 * {
   margin: 0;
+  padding: 0px;
   box-sizing: border-box;
+  font-family: "Jost", sans-serif;
 }
 body {
   background-image: url(../assets/background.jpg);
