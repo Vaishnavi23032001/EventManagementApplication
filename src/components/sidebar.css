@@ -3,8 +3,8 @@
     position: fixed;
     width: 36px;
     height: 30px;
-    left: 120em;
-    top: 5em;
+    left: 90%;
+    top: 3em;
     flex-direction: row-reverse;
   }
   
@@ -69,7 +69,7 @@
   /* Individual item */
   .bm-item {
     display: inline-block;
-    font-size: 1.7em;
+    font-size: 1em;
     color: #ffffff;
     margin-bottom: 10px;
     text-align: left;
@@ -80,4 +80,29 @@
   .bm-item:hover {
     color: #ffffff;
   }
+
+/*   
+  @media (max-width: 764px){
+    .bm-burger-button {
+      position: fixed;
+      width: 36px;
+      height: 30px;
+      left: 30em;
+      top: 3em;
+      flex-direction: row-reverse;
+    }
+  }
+  @media (max-width: 1024px){
+    .bm-burger-button {
+      position: fixed;
+      width: 36px;
+      height: 30px;
+      left: 60em;
+      top: 3em;
+      flex-direction: row-reverse;
+    }
+  } */
+  
+  
+  
   

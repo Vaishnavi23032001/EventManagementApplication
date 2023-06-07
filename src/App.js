@@ -15,14 +15,15 @@ function App() {
       
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<LoginForm />} />
-          <Route path="/signup" element={<SignUp />} /> */}
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/signup" element={<SignUp />} />
 
-          <Route path="/" element={<EventPage />} />
+          {/* <Route path="/" element={<EventPage />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/EventPage" element={<EventPage />} />
           <Route path="/BookmarkEvents" element={<BookmarkEvents />} />
           <Route path="/BookedEvents" element={<BookedEvents />} />
-          <Route path="/AttendedEvents" element={<AttendedEvents />} />  
+          <Route path="/AttendedEvents" element={<AttendedEvents />} />   */}
         </Routes>
       </BrowserRouter>
 

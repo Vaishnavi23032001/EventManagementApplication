@@ -9,7 +9,7 @@ const PasswordErrorMessage = () => {
 };
 
 function SignUp() {
-  const [userName,setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [fullName, setFullName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -47,100 +47,105 @@ function SignUp() {
   };
 
   return (
-    <div className="SignUp">
-      <form className="signup_form" onSubmit={handleSubmit}>
-        <fieldset>
-          <h2>Sign Up</h2>
-          
-          <div className="Field">
-            <label>
-              Full name <sup>*</sup>
-            </label>
-            <input className="signup_input"
-              value={fullName}
-              onChange={(e) => {
-                setFullName(e.target.value);
-              }}
-              placeholder="Full name"
-            />
-          </div>
+    <>
+      <div className="signup-body">
+        <div className="SignUp">
+          <form className="signup_form" onSubmit={handleSubmit}>
+            <fieldset>
+              <h2>Sign Up</h2>
 
-          <div className="Field">
-            <label>
-              Email address <sup>*</sup>
-            </label>
-            <input
-            className="signup_input"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              placeholder="Email address"
-            />
-          </div>
-          <div className="Field">
-            <label>
-              Mobile Number <sup>*</sup>
-            </label>
-            <input
-            className="signup_input"
-              value={mobileNumber}
-              onChange={(e) => {
-                setMobileNumber(e.target.value);
-              }}
-              placeholder="Mobile Number"
-            />
-          </div>
-          <div className="Field">
-            <label>
-              Username<sup>*</sup>
-            </label>
-            <input
-            className="signup_input"
-              value={userName}
-              onChange={(e) => {
-                setUserName(e.target.value);
-              }}
-              placeholder="Username"
-            />
-          </div>
-          <div className="Field">
-            <label>
-              Password <sup>*</sup>
-            </label>
-            <input
-            className="signup_input"
-              value={password.value}
-              type="password"
-              onChange={(e) => {
-                setPassword({ ...password, value: e.target.value });
-              }}
-              onBlur={() => {
-                setPassword({ ...password, isTouched: true });
-              }}
-              placeholder="Password"
-            />
-            {password.isTouched && password.value.length < 8 ? (
-              <PasswordErrorMessage />
-            ) : null}
-          </div>
-          <div className="Field">
-            <label>
-              Role <sup>*</sup>
-            </label>
-            <select value={role} onChange={(e) => setRole(e.target.value)}>
-              <option value="role">Role</option>
-              <option value="Admin">Admin</option>
-              <option value="User">User</option>
-            </select>
-          </div>
+              <div className="Field">
+                <label>
+                  Full name <sup>*</sup>
+                </label>
+                <input
+                  className="signup_input"
+                  value={fullName}
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                  }}
+                  placeholder="Full name"
+                />
+              </div>
 
-          <button type="submit" disabled={!getIsFormValid()}>
-            Create account
-          </button>
-        </fieldset>
-      </form>
-    </div>
+              <div className="Field">
+                <label>
+                  Email address <sup>*</sup>
+                </label>
+                <input
+                  className="signup_input"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  placeholder="Email address"
+                />
+              </div>
+              <div className="Field">
+                <label>
+                  Mobile Number <sup>*</sup>
+                </label>
+                <input
+                  className="signup_input"
+                  value={mobileNumber}
+                  onChange={(e) => {
+                    setMobileNumber(e.target.value);
+                  }}
+                  placeholder="Mobile Number"
+                />
+              </div>
+              <div className="Field">
+                <label>
+                  Username<sup>*</sup>
+                </label>
+                <input
+                  className="signup_input"
+                  value={userName}
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                  }}
+                  placeholder="Username"
+                />
+              </div>
+              <div className="Field">
+                <label>
+                  Password <sup>*</sup>
+                </label>
+                <input
+                  className="signup_input"
+                  value={password.value}
+                  type="password"
+                  onChange={(e) => {
+                    setPassword({ ...password, value: e.target.value });
+                  }}
+                  onBlur={() => {
+                    setPassword({ ...password, isTouched: true });
+                  }}
+                  placeholder="Password"
+                />
+                {password.isTouched && password.value.length < 8 ? (
+                  <PasswordErrorMessage />
+                ) : null}
+              </div>
+              <div className="Field">
+                <label>
+                  Role <sup>*</sup>
+                </label>
+                <select value={role} onChange={(e) => setRole(e.target.value)}>
+                  <option value="role">Role</option>
+                  <option value="Admin">Admin</option>
+                  <option value="User">User</option>
+                </select>
+              </div>
+
+              <button type="submit" disabled={!getIsFormValid()}>
+                Create account
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -16,10 +16,9 @@ const LoginForm = () => {
     });
   };
 
- 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    
+
     //validation
     if (
       loginDetails.username.trim() === "" ||
@@ -31,43 +30,48 @@ const LoginForm = () => {
     console.log(loginDetails);
   };
   return (
-    <div className="loginpage">
-      <form onSubmit={handleFormSubmit}>
-        <h1 className="login-heading">Login</h1>
-        <label className="username">
-          Username <sup>*</sup>
-        </label>
-        <input
-          value={loginDetails.username}
-          type="text"
-          placeholder="username"
-          onChange={(e) => handleChange(e, "username")}
-        />
+    <>
+      <div className="login-body">
+        <div className="loginpage">
+          <form onSubmit={handleFormSubmit}>
+            <h1 className="login-heading">Login</h1>
+            <label className="username">
+              Username <sup>*</sup>
+            </label>
+            <br />
+            <input
+              className="login-input"
+              value={loginDetails.username}
+              type="text"
+              placeholder="username"
+              onChange={(e) => handleChange(e, "username")}
+            />
+            <br />
+            <label className="password">
+              Password <sup>*</sup>
+            </label>
+            <br />
+            <input
+              className="login-input"
+              value={loginDetails.password}
+              type="password"
+              placeholder="password"
+              onChange={(e) => handleChange(e, "password")}
+            />
+            <br />
 
-        <label className="password">
-          Password <sup>*</sup>
-        </label>
-        <input
-          value={loginDetails.password}
-          type="password"
-          placeholder="password"
-          onChange={(e) => handleChange(e, "password")}
-        />
+            <Link to="">Forget Password</Link>
+            <br />
 
-        {/* <a href="#">Forget Password</a> */}
-        <Link to="">Forget Password</Link>
-        <br />
+            <Link to="/SignUp">Create a new account</Link>
 
-        {/* <p>
-          Don't have an account? <Link to="/signup">Create a new account</Link>
-        </p> */}
-        <Link to="/SignUp">Create a new account</Link>
-        
-        <button text="submit" className="button">
-          Login
-        </button>
-      </form>
-    </div>
+            <button text="submit" className="login-button">
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 

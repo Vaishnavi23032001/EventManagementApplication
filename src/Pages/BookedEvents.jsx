@@ -18,7 +18,7 @@ function BookedEvents() {
       </div>
     </nav>
     <section>
-      <h1>Booked Events</h1>
+      <h1  className="table-heading">Booked Events</h1>
       
     </section>
   </>

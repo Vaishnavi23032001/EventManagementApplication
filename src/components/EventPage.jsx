@@ -55,36 +55,36 @@ const Event = () => {
   ];
   return (
     <>
-      <nav className="navbar">
-        <div className="logo">
-          <img src={logo} alt="Logo" />
-        </div>
-        <div>
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Search..."
-              onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
-            />
-            <BsSearch className="search-logo" />
+      <div className="event_page">
+        <nav className="navbar">
+          <div className="logo">
+            <img src={logo} alt="Logo" />
           </div>
-        </div>
-        <div className="person-menu">
-          <Sidebar
-            pageWrapId={"page-wrap"}
-            outerContainerId={"outer-container"}
-          />
-        </div>
+          <div>
+            <div >
+              <input className="search-bar"
+                type="text"
+                placeholder="Search..."
+                onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
+              />
+              <BsSearch className="search-logo" />
+            </div>
+          </div>
+          <div className="person-menu">
+            <Sidebar
+              pageWrapId={"page-wrap"}
+              outerContainerId={"outer-container"}
+            />
+          </div>
+        </nav>
 
-      
-      </nav>
-
-      <section className="table-section">
-        <div>
-          <h1>Upcoming Events</h1>
-          {<EventTable events_data={search(events)} />}
-        </div>
-      </section>
+        <section className="table-section">
+          <div>
+            <h1 className="table-heading">Upcoming Events</h1>
+            {<EventTable events_data={search(events)} />}
+          </div>
+        </section>
+      </div>
     </>
   );
 };

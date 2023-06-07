@@ -1,6 +1,8 @@
 import React from 'react'
 import logo from "../assets/images.jpg";
 import Sidebar from "../components/Sidebar";
+import "../components/sidebar.css";
+
 
 function BookmarkEvents() {
   return (
@@ -18,7 +20,7 @@ function BookmarkEvents() {
       </div>
     </nav>
     <section>
-      <h1>Bookmark Events</h1>
+      <h1  className="table-heading">Bookmark Events</h1>
       
     </section>
   </>

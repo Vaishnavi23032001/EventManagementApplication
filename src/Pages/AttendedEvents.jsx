@@ -18,7 +18,7 @@ function AttendedEvents() {
         </div>
       </nav>
       <section>
-        <h1>Attended Events</h1>
+        <h1  className="table-heading">Attended Events</h1>
         
       </section>
     </>

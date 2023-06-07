@@ -6,7 +6,7 @@ import "./sidebar.css";
 function Sidebar() {
   return (
     <>
-      <div className="person-menu">
+      <div className="person-menu-1">
         <Menu>
           
           <a className="menu-item" href="/EventPage">

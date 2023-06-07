@@ -5,7 +5,7 @@ const EventTable = ({ events_data }) => {
     <table>
       <thead>
         <tr>
-          <th>Image</th>
+          <th>Event No</th>
           <th>Event Name</th>
           <th>Date & Time</th>
           <th>Location</th>
