@@ -1,0 +1,176 @@
+.SignUp {
+  background-color: white;
+}
+.signup_form {
+  height: 33em;
+  width: 27em;
+  padding: 10px;
+}
+fieldset {
+  display: flex;
+  width: 413px;
+  padding: 16px;
+  border: 3px solid #5385c4;
+  border-radius: 4px;
+  flex-direction: column;
+  height: 505px;
+}
+
+label {
+  margin-bottom: 0px;
+  margin-left: 21px;
+  font-size: 14px;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+sup {
+  color: red;
+  top: -2px;
+  font-size: 95%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.signup_input,
+select {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  height: 27px;
+  padding: 0 8px;
+  margin-bottom: 18px;
+  margin-top: 0px;
+}
+select {
+  margin-left: 19px;
+  width: 320px;
+}
+.Field {
+  position: relative;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.FieldError {
+  position: absolute;
+  bottom: -6px;
+  color: red;
+  font-size: 12px;
+}
+
+.Row {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  color: rgb(32, 177, 255);
+  padding: 12px;
+  width: 175px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: darkblue;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 100px;
+}
+
+button:disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: rgb(32, 177, 255);
+  color: #666666;
+  cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+    .signup_form {
+    height: 28em;
+    width: 20em;
+    padding: 10px;
+  }
+  fieldset {
+    display: flex;
+    width: 302px;
+    padding: 8px;
+    border: 3px solid #5385c4;
+    border-radius: 4px;
+    flex-direction: column;
+    height: 430px;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .signup_input,
+  select {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 23px;
+    width: 232px;
+    padding: 0 8px;
+    margin-bottom: 12px;
+    margin-top: 0px;
+    margin-left: 21px;
+  }
+  button {
+    padding: 12px;
+    width: 151px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 61px;
+  }
+}
+
+@media (max-width: 375px) {
+  .App {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px;
+  }
+  .signup_form {
+    height: 26em;
+    width: 19em;
+    padding: 10px;
+  }
+  fieldset {
+    display: flex;
+    width: 200px;
+    padding: 2px;
+    border: 3px solid #5385c4;
+    border-radius: 4px;
+    flex-direction: column;
+    height: 396px;
+  }
+  .signup_input,
+  select {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 23px;
+    width: 232px;
+    padding: 0 8px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-left: 21px;
+  }
+  button {
+    padding: 12px;
+    width: 130px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 61px;
+  }
+}
