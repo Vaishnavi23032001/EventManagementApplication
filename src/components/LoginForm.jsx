@@ -3,49 +3,79 @@ import "./loginform.css";
 import { Link } from "react-router-dom";
 
 const LoginForm = () => {
-  const [loginDetails, setLoginDetails] = useState({
-    username: "",
-    password: "",
+  const [userName, setUserName] = useState({
+    value: "",
+    isTouched: false,
   });
-
-  const handleChange = (event, field) => {
-    let actualValue = event.target.value;
-    setLoginDetails({
-      ...loginDetails,
-      [field]: actualValue,
-    });
+  const [password, setPassword] = useState({
+    value: "",
+    isTouched: false,
+  });
+  const UsernameErrorMessage = () => {
+    return (
+      <p className="username-fielderror-login">
+        Username should have at least 5 characters
+      </p>
+    );
+  };
+  const PasswordErrorMessage = () => {
+    return (
+      <p className="password-fielderror-login">
+        Password should have at least 8 characters
+      </p>
+    );
   };
 
+  const getIsFormValid = () => {
+    return userName.value.length >= 5 && password.value.length >= 8;
+  };
+
+  const clearForm = () => {
+    setUserName({
+      value: "",
+      isTouched: false,
+    });
+    setPassword({
+      value: "",
+      isTouched: false,
+    });
+  };
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
     //validation
-    if (
-      loginDetails.username.trim() === "" ||
-      loginDetails.password.trim() === ""
-    ) {
-      alert("Username or password is required.");
-      return;
-    }
-    console.log(loginDetails);
+
+    clearForm();
+    alert("Login successful!");
+    console.log(userName.value);
+    console.log(password.value);
   };
   return (
     <>
       <div className="login-body">
         <div className="loginpage">
           <form onSubmit={handleFormSubmit}>
-            <h1 className="login-heading">Login</h1>
+            <h1 className="login-heading">Login Here</h1>
             <label className="username">
               Username <sup>*</sup>
             </label>
             <br />
             <input
               className="login-input"
-              value={loginDetails.username}
+              value={userName.value}
               type="text"
               placeholder="username"
-              onChange={(e) => handleChange(e, "username")}
+              onChange={(e) => {
+                setUserName({ ...userName, value: e.target.value });
+              }}
+              onBlur={() => {
+                setUserName({ ...userName, isTouched: true });
+              }}
             />
+            {userName.isTouched && userName.value.length <5? (
+              <UsernameErrorMessage />
+            ) : null}
+
             <br />
             <label className="password">
               Password <sup>*</sup>
@@ -53,19 +83,34 @@ const LoginForm = () => {
             <br />
             <input
               className="login-input"
-              value={loginDetails.password}
+              value={password.value}
               type="password"
               placeholder="password"
-              onChange={(e) => handleChange(e, "password")}
+              onChange={(e) => {
+                setPassword({ ...password, value: e.target.value });
+              }}
+              onBlur={() => {
+                setPassword({ ...password, isTouched: true });
+              }}
             />
+
+            {password.isTouched && password.value.length < 8 ? (
+              <PasswordErrorMessage />
+            ) : null}
+
             <br />
 
-            <Link to="">Forget Password</Link>
+            <Link to="/ForgotPassword" className="forget-password">Forget Password</Link>
+
             <br />
 
-            <Link to="/SignUp">Create a new account</Link>
+            <Link to="/SignUp" className="sign-up">Create a new account</Link>
 
-            <button text="submit" className="login-button">
+            <button
+              type="submit"
+              className="login-button"
+              disabled={!getIsFormValid()}
+            >
               Login
             </button>
           </form>
