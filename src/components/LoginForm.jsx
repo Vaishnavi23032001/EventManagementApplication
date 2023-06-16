@@ -3,71 +3,120 @@ import "./loginform.css";
 import { Link } from "react-router-dom";
 
 const LoginForm = () => {
-  const [loginDetails, setLoginDetails] = useState({
-    username: "",
-    password: "",
+  const [userName, setUserName] = useState({
+    value: "",
+    isTouched: false,
   });
+  const [password, setPassword] = useState({
+    value: "",
+    isTouched: false,
+  });
+  const UsernameErrorMessage = () => {
+    return (
+      <p className="username-fielderror-login">
+        Username should have at least 5 characters
+      </p>
+    );
+  };
+  const PasswordErrorMessage = () => {
+    return (
+      <p className="password-fielderror-login">
+        Password should have at least 8 characters
+      </p>
+    );
+  };
 
-  const handleChange = (event, field) => {
-    let actualValue = event.target.value;
-    setLoginDetails({
-      ...loginDetails,
-      [field]: actualValue,
+  const getIsFormValid = () => {
+    return userName.value.length >= 5 && password.value.length >= 8;
+  };
+
+  const clearForm = () => {
+    setUserName({
+      value: "",
+      isTouched: false,
+    });
+    setPassword({
+      value: "",
+      isTouched: false,
     });
   };
-
- 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    
+
     //validation
-    if (
-      loginDetails.username.trim() === "" ||
-      loginDetails.password.trim() === ""
-    ) {
-      alert("Username or password is required.");
-      return;
-    }
-    console.log(loginDetails);
+
+    clearForm();
+    alert("Login successful!");
+    console.log(userName.value);
+    console.log(password.value);
   };
   return (
-    <div className="loginpage">
-      <form onSubmit={handleFormSubmit}>
-        <h1 className="login-heading">Login</h1>
-        <label className="username">
-          Username <sup>*</sup>
-        </label>
-        <input
-          value={loginDetails.username}
-          type="text"
-          placeholder="username"
-          onChange={(e) => handleChange(e, "username")}
-        />
+    <>
+      <div className="login-body">
+        <div className="loginpage">
+          <form onSubmit={handleFormSubmit}>
+            <h1 className="login-heading">Login Here</h1>
+            <label className="username">
+              Username <sup>*</sup>
+            </label>
+            <br />
+            <input
+              className="login-input"
+              value={userName.value}
+              type="text"
+              placeholder="username"
+              onChange={(e) => {
+                setUserName({ ...userName, value: e.target.value });
+              }}
+              onBlur={() => {
+                setUserName({ ...userName, isTouched: true });
+              }}
+            />
+            {userName.isTouched && userName.value.length <5? (
+              <UsernameErrorMessage />
+            ) : null}
 
-        <label className="password">
-          Password <sup>*</sup>
-        </label>
-        <input
-          value={loginDetails.password}
-          type="password"
-          placeholder="password"
-          onChange={(e) => handleChange(e, "password")}
-        />
+            <br />
+            <label className="password">
+              Password <sup>*</sup>
+            </label>
+            <br />
+            <input
+              className="login-input"
+              value={password.value}
+              type="password"
+              placeholder="password"
+              onChange={(e) => {
+                setPassword({ ...password, value: e.target.value });
+              }}
+              onBlur={() => {
+                setPassword({ ...password, isTouched: true });
+              }}
+            />
 
-        {/* <a href="#">Forget Password</a> */}
-        <Link to="">Forget Password</Link>
-        <br />
+            {password.isTouched && password.value.length < 8 ? (
+              <PasswordErrorMessage />
+            ) : null}
 
-        {/* <p>
-          Don't have an account? <Link to="/signup">Create a new account</Link>
-        </p> */}
-        <Link to="/SignUp">Create a new account</Link>
-        
-        <button text="submit" className="button">
-          Login
-        </button>
-      </form>
-    </div>
+            <br />
+
+            <Link to="/ForgotPassword" className="forget-password">Forget Password</Link>
+
+            <br />
+
+            <Link to="/SignUp" className="sign-up">Create a new account</Link>
+
+            <button
+              type="submit"
+              className="login-button"
+              disabled={!getIsFormValid()}
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 

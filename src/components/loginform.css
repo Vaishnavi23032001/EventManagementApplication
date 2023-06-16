@@ -1,6 +1,8 @@
-* {
+/* * {
   margin: 0;
+  padding: 0px;
   box-sizing: border-box;
+  font-family: "Jost", sans-serif;
 }
 body {
   background-image: url(../assets/background.jpg);
@@ -14,18 +16,33 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+} */
+.login-body{
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Jost", sans-serif;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, rgb(70, 70, 220), rgb(107, 162, 196));
+  /* background-image: url(../assets/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; */
 }
 .loginpage {
   background-color: white;
   width: 24em;
-  height: 30em;
+  height: 29em;
   position: relative;
   border-radius: 1em;
-  box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
+  /* box-shadow: 0 0.188em 1.55em rgb(156, 156, 156); */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  box-shadow: 0 0 40px rgb(0 0 0 / 60%);
 }
 
 .loginpage-form {
@@ -39,12 +56,14 @@ body {
   align-items: center;
   margin: -10px;
   margin-bottom: 38px;
-  margin-top: 15px;
+  margin-top: 30px;
+
 }
 .username,
 .password {
   margin: 20px;
-  margin-left: 30px;
+  margin-left: 3em;
+  font-size: 1.2em;
 }
 sup {
   color: red;
@@ -54,32 +73,40 @@ sup {
   position: relative;
   vertical-align: baseline;
 }
-input {
+ .login-input{
   border: none;
   background-color: rgb(229, 226, 226);
-  height: 4em;
-  width: 85%;
+  height: 5px;
+  width: 58%;
   border-radius: 0.25em;
-  /* text-align: center; */
-  padding: 2em;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   margin: 20px;
   margin-bottom: 12px;
-  margin-top: 5px;
-  margin-left: 29px;
+  margin-top: 6px;
+  margin-left: 4.4em;
 }
 
 input:focus {
   outline-color: rgb(32, 171, 255);
 }
-
-a {
-  margin: 20px;
-  padding: 10px;
+.username-fielderror-login {
+  position: absolute;
+  bottom: 22em;
+  left: 5em;
+  color: red;
+  font-size: 12px;
+}
+.password-fielderror-login {
+  position: absolute;
+  bottom: 13.5em;
+  left: 5em;
+  color: red;
+  font-size: 12px;
 }
 
-.button {
+.login-button {
   width: 15em;
   padding: 10px 20px;
   background-color: rgb(32, 177, 255);
@@ -88,19 +115,26 @@ a {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 60px;
+  margin: 30px;
   margin-left: 70px;
 }
 
-.button:hover {
-  background-color: #45a049;
+.login-button:hover {
+  background-color: #2134e4;
 }
 
-.button:active {
-  background-color: #3e8e41;
-}
 .login-btn:hover {
   transform: scale(1.25);
+}
+.forget-password,.sign-up{
+  text-align: center;
+  font-size: 1em;
+  margin-top: 1.5em;
+  color: rgb(70, 70, 220);
+  text-decoration: none;
+  margin-bottom: 2em;
+  margin: 48px 0px 0px 48px;
+  padding: 10px;
 }
 
 @media (max-width: 768px) {
@@ -114,19 +148,47 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
   }
   .login-heading {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 19px;
     margin-bottom: 25px;
     text-align: center;
   }
-  .button {
+  .login-input {
+    border: none;
+    background-color: rgb(229, 226, 226);
+    height: 12px;
+    width: 62%;
+    border-radius: 0.25em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-bottom: 12px;
+    margin-top: 2px;
+    margin-left: 4em;
+}
+
+.username-fielderror-login {
+  position: absolute;
+  bottom: 22em;
+  left: 4.5em;
+  color: red;
+  font-size: 12px;
+}
+.password-fielderror-login {
+  position: absolute;
+  bottom: 14em;
+  left: 4.5em;
+  color: red;
+  font-size: 12px;
+}
+  .login-button {
     width: 175px;
-    margin-left: 90px;
+    margin-left: 6em;
     margin-top: 50px;
     margin-right: 0px;
     margin-bottom: 0px;
@@ -142,10 +204,11 @@ a {
 
 @media (max-width: 500px) {
   .login-heading {
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-bottom: 15px;
   }
   .loginpage {
@@ -161,27 +224,48 @@ a {
     justify-content: space-around;
   }
 
-  input {
+  .username-fielderror-login {
+    position: absolute;
+    bottom: 20em;
+    left: 3em;
+    color: red;
+    font-size: 12px;
+  }
+  .password-fielderror-login {
+    position: absolute;
+    bottom: 11.5em;
+    left: 3em;
+    color: red;
+    font-size: 12px;
+  }
+  .login-input {
     width: 70%;
-    margin-left: 32px;
+    margin-left: 2.7em;
     margin-top: 10px;
   }
   .username,
   .password {
     margin-top: 10px;
-    padding-top: 10px;
+    padding-top: 5px;
+    margin-left: 2em;
   }
-  a {
-    margin-left: 32px;
-    padding: 0px;
+  .forget-password,.sign-up{
+    text-align: center;
+    font-size: 1em;
+    margin-top: 1em;
+    color: rgb(70, 70, 220);
+    text-decoration: none;
+    margin-bottom: 2em;
+    margin: 4px 0px 0px 48px;
+    padding: 10px;
   }
-  .button {
+  .login-button {
     margin: 35px;
-    margin-left: 64px;
+    margin-left: 4.7em;
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 400px) {
   .App {
     height: 103vh;
   }
@@ -197,8 +281,8 @@ a {
     align-items: center;
     justify-content: space-around;
   }
-  .button {
-    width: 175px;
+  .login-button {
+    width: 150px;
   }
 }
 @media (max-width: 375px) {
@@ -210,10 +294,11 @@ a {
     align-items: center;
     margin-left: 18px;
   }
+
   .loginpage {
     background-color: white;
     width: 18em;
-    height: 24em;
+    height: 26em;
     position: relative;
     border-radius: 1em;
     box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
@@ -222,11 +307,28 @@ a {
     align-items: center;
     justify-content: space-around;
   }
-
-  .login-btn {
+.login-heading {
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 25vh; /* Optional - Adjust to your needs */
-  }
+    margin-top: 40px;
+    margin-bottom: 15px;
 }
+.username-fielderror-login {
+  position: absolute;
+  bottom: 20em;
+  left: 3em;
+  color: red;
+  font-size: 12px;
+}
+.password-fielderror-login {
+  position: absolute;
+  bottom: 11em;
+  left: 3em;
+  color: red;
+  font-size: 12px;
+}
+
+}
+
