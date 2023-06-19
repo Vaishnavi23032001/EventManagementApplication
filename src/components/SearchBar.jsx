@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import EventTable from "./EventTable";
-import "./eventpage.css";
+import "./userpage.css";
 
 function SearchBar({ events }) {
   const [searchQuery, setSearchQuery] = useState("");
   const keys = ["name"];
+  
   const search = (events_data) => {
     return events_data.filter((item) =>
       keys.some((key) => item[key].toLowerCase().includes(searchQuery))

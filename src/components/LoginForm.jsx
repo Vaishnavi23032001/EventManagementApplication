@@ -42,9 +42,6 @@ const LoginForm = () => {
   };
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
-    //validation
-
     clearForm();
     alert("Login successful!");
     console.log(userName.value);
@@ -97,15 +94,11 @@ const LoginForm = () => {
             {password.isTouched && password.value.length < 8 ? (
               <PasswordErrorMessage />
             ) : null}
-
             <br />
-
             <Link to="/ForgotPassword" className="forget-password">Forget Password</Link>
-
             <br />
-
             <Link to="/SignUp" className="sign-up">Create a new account</Link>
-
+            <Link to="/UserPage">
             <button
               type="submit"
               className="login-button"
@@ -113,6 +106,9 @@ const LoginForm = () => {
             >
               Login
             </button>
+            </Link>
+            
+            <Link to="/AdminPage">Admin</Link>
           </form>
         </div>
       </div>

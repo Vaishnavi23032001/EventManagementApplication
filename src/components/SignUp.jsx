@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import "./signup.css";
 import { validateEmail } from "./utils";
-
+import { Link } from "react-router-dom";
+import { ImCross } from "react-icons/im";
 function SignUp() {
   const [fullName, setFullName] = useState({
     value: "",
@@ -43,13 +44,6 @@ function SignUp() {
     return mobileNumberRegex.test(number);
   };
 
-  // const handleMobileNumberChange = (e) => {
-  //   const value = e.target.value;
-
-  //   if (validateMobileNumber(value) || value === "") {
-  //     setMobileNumber(value);
-  //   }
-  // };
   const MobileNumberErrorMessage = () => {
     return (
       <p className="fielderror-signup">Mobile number must be 10 digit number</p>
@@ -112,20 +106,19 @@ function SignUp() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    //handleSubmit(e);
     if (getIsFormValid()) {
       handleSubmit(e);
     }
-    // alert("Account created!");
-    // clearForm();
   };
 
   return (
     <>
       <div className="signup-body">
         <form className="signup_form" onSubmit={handleFormSubmit}>
-          <h2>Sign Up</h2>
-
+            <Link to="/LoginForm" className="cross-btn">
+              <ImCross />
+            </Link>
+          <h1 className="signup-heading">Sign Up</h1>
           <div className="Field">
             <label>
               Full name <sup>*</sup>
@@ -162,9 +155,9 @@ function SignUp() {
               }}
               placeholder="Email address"
             />
-            {(email.isTouched &&
-            email.value.length <10 &&
-            !validateEmail(email.value)) ? (
+            {email.isTouched &&
+            email.value.length < 10 &&
+            !validateEmail(email.value) ? (
               <EmailErrorMessage />
             ) : null}
           </div>
@@ -184,8 +177,9 @@ function SignUp() {
               }}
               placeholder="Mobile Number"
             />
-            {(mobileNumber.isTouched && !validateMobileNumber(mobileNumber.value) &&
-            mobileNumber.value.length <10) ? (
+            {mobileNumber.isTouched &&
+            !validateMobileNumber(mobileNumber.value) &&
+            mobileNumber.value.length < 10 ? (
               <MobileNumberErrorMessage />
             ) : null}
           </div>
@@ -240,7 +234,11 @@ function SignUp() {
             </select>
           </div>
 
-          <button type="submit" disabled={!getIsFormValid()}>
+          <button
+            className="signup-button"
+            type="submit"
+            disabled={!getIsFormValid()}
+          >
             Create account
           </button>
         </form>
