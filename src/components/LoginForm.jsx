@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./loginform.css";
+import "../style/loginform.css";
 import { Link } from "react-router-dom";
 
 const LoginForm = () => {

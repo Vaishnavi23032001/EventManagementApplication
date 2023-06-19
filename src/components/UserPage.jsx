@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/images.jpg";
-import "./userpage.css";
+import "../style/userpage.css";
 import EventTable from "./EventTable";
 import Sidebar from "./Sidebar";
 

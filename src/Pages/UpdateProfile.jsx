@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./updateprofile.css";
+import "../style/updateprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 function UpdateProfile() {

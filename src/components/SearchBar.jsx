@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import EventTable from "./EventTable";
-import "./userpage.css";
+import "../style/userpage.css";
 
 function SearchBar({ events }) {
   const [searchQuery, setSearchQuery] = useState("");

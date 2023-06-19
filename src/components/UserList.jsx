@@ -1,6 +1,6 @@
 import React from "react";
-import "./userlist.css";
-import "./userpage.css";
+import "../style/userlist.css";
+import "../style/userpage.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 function UserList() {

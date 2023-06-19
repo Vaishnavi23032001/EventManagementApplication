@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./addevent.css";
+import "../style/addevent.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 function UpdateEvent() {

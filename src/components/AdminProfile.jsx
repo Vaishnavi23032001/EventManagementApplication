@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../Pages/userprofile.css";
+import "../style/userprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 const AdminProfile = () => {

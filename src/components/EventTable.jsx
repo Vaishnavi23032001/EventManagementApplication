@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./userpage.css";
+import "../style/userpage.css";
 import { BsFillBookmarkFill } from "react-icons/bs";
 
 const EventTable = ({ events_data }) => {

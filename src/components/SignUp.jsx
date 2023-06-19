@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./signup.css";
+import "../style/signup.css";
 import { validateEmail } from "./utils";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
@@ -40,7 +40,6 @@ function SignUp() {
   const validateMobileNumber = (number) => {
     // Use a regular expression or any other validation logic to validate the mobile number format
     const mobileNumberRegex = /^[0-9]{10}$/; // Assuming the mobile number should be 10 digits long
-
     return mobileNumberRegex.test(number);
   };
 

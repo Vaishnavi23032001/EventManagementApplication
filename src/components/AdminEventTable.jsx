@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import "./userpage.css"
+import "../style/userpage.css"
 import {  AiFillEdit,AiTwotoneDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const AdminEventTable = ({ events_data }) => {

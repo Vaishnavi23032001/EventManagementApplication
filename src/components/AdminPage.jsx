@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/images.jpg";
-import "./userpage.css";
+import "../style/userpage.css";
 import AdminEventTable from "./AdminEventTable";
 import AdminSidebar from "./AdminSidebar";
 import { AiFillPlusCircle } from "react-icons/ai";

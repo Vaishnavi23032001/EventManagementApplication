@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { validateEmail } from "./utils";
-import "./forgotpassword.css";
+import "../style/forgotpassword.css";
 import { ImCross } from "react-icons/im";
 const ForgotPassword = () => {
   const [email, setEmail] = useState({
