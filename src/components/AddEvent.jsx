@@ -3,16 +3,16 @@ import "../style/addevent.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 function AddEvent() {
+
   const [eventName, setEventName] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
-  const [seat, setSeat] = useState("");
+  const [totalseat, setTotalSeat] = useState("");
   const [leftseat, setLeftSeat] = useState("");
 
   const handleEventSubmit = (e) => {
     e.preventDefault();
-    // Perform any necessary actions with the event data (e.g., submit to a server)
     console.log("Event Name:", eventName);
     alert("Event Added successfully");
     clearForm();
@@ -22,7 +22,7 @@ function AddEvent() {
     setDate("");
     setTime("");
     setLocation("");
-    setSeat("");
+    setTotalSeat("");
     setLeftSeat("");
   };
   return (
@@ -81,8 +81,8 @@ function AddEvent() {
             <input
               type="number"
               id="seat"
-              value={seat}
-              onChange={(e) => setSeat(e.target.value)}
+              value={totalseat}
+              onChange={(e) => setTotalSeat(e.target.value)}
               required
             />
 

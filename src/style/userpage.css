@@ -80,6 +80,11 @@ td {
   cursor: pointer;
   font-size: 15px;
 }
+.book-button{
+  width: 5em;
+  height: 2.3em;
+  font-size: 12px;
+}
 .update-button{
   background-color: orange;
 }
@@ -89,9 +94,11 @@ td {
 }
 .bookmark-button.bookmarked , .book-button.booked{
   /* color: red  */
+  background-color: #2b50cb;
   transform: scale(1.25);
 }
 .update-button:hover, .delete-button:hover{
+  background-color: #2b50cb;
   transform: scale(1.25);
 }
 .add-button{

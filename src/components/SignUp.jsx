@@ -1,9 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../style/signup.css";
 import { validateEmail } from "./utils";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+import axios from "axios";
+
 function SignUp() {
   const [fullName, setFullName] = useState({
     value: "",
@@ -27,6 +29,11 @@ function SignUp() {
   });
   const [role, setRole] = useState("role");
 
+  useEffect(() => {
+    document.title = "Sign Up";
+  }, []);
+
+  
   const FullnameErrorMessage = () => {
     return (
       <p className="fielderror-signup">
@@ -38,8 +45,7 @@ function SignUp() {
     return <p className="fielderror-signup">Email should be proper format</p>;
   };
   const validateMobileNumber = (number) => {
-    // Use a regular expression or any other validation logic to validate the mobile number format
-    const mobileNumberRegex = /^[0-9]{10}$/; // Assuming the mobile number should be 10 digits long
+    const mobileNumberRegex = /^[0-9]{10}$/; 
     return mobileNumberRegex.test(number);
   };
 
@@ -66,10 +72,10 @@ function SignUp() {
     return (
       fullName.value.length >= 5 &&
       validateEmail(email.value) &&
-      validateMobileNumber(mobileNumber) &&
-      userName.value.length >= 5 &&
-      password.value.length >= 8 &&
-      role !== "role"
+      // validateMobileNumber(mobileNumber) &&
+       userName.value.length >= 5 &&
+       password.value.length >= 8 &&
+       role !== "role"
     );
   };
 
@@ -97,26 +103,38 @@ function SignUp() {
     setRole("role");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Account created!");
-    clearForm();
-  };
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (getIsFormValid()) {
-      handleSubmit(e);
-    }
+    const data = {
+      fullName: fullName.value,
+      email: email.value,
+      mobileNumber: mobileNumber.value,
+      username: userName.value,
+      password: password.value,
+      role: role,
+    };
+    
+    axios
+      .post("https://15f6-203-212-221-36.ngrok-free.app/api/users/sign-up", data) 
+      .then((response) => {
+        console.log(response); 
+        
+        alert("Account created!");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error creating account");
+      });
+      clearForm();
   };
 
   return (
     <>
       <div className="signup-body">
         <form className="signup_form" onSubmit={handleFormSubmit}>
-            <Link to="/LoginForm" className="cross-btn">
-              <ImCross />
-            </Link>
+          <Link to="/LoginForm" className="cross-btn">
+            <ImCross />
+          </Link>
           <h1 className="signup-heading">Sign Up</h1>
           <div className="Field">
             <label>
@@ -169,15 +187,15 @@ function SignUp() {
               value={mobileNumber.value}
               type="text"
               onChange={(e) => {
-                setMobileNumber({ ...mobileNumber, valuee: e.target.value });
+                setMobileNumber({ ...mobileNumber, value: e.target.value });
               }}
               onBlur={() => {
                 setMobileNumber({ ...mobileNumber, isTouched: true });
               }}
               placeholder="Mobile Number"
             />
-            {mobileNumber.isTouched &&
-            !validateMobileNumber(mobileNumber.value) &&
+            {(mobileNumber.isTouched &&
+            !validateMobileNumber(mobileNumber.value)) &&
             mobileNumber.value.length < 10 ? (
               <MobileNumberErrorMessage />
             ) : null}

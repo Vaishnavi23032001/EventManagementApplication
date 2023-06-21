@@ -71,15 +71,15 @@ input:focus {
 }
 .username-fielderror-login {
   position: absolute;
-  bottom: 22em;
-  left: 5em;
+  bottom: 20.3em;
+  left: 4.3em;
   color: red;
   font-size: 12px;
 }
 .password-fielderror-login {
   position: absolute;
-  bottom: 13.5em;
-  left: 5em;
+  bottom: 12.8em;
+  left: 4.3em;
   color: red;
   font-size: 12px;
 }
@@ -118,8 +118,8 @@ input:focus {
 @media (max-width: 768px) {
   .loginpage {
     background-color: white;
-    width: 23em;
-    height: 27em;
+    width: 21em;
+    height: 24em;
     position: relative;
     border-radius: 1em;
     box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
@@ -152,22 +152,22 @@ input:focus {
 
 .username-fielderror-login {
   position: absolute;
-  bottom: 22em;
+  bottom: 19.7em;
   left: 4.5em;
   color: red;
   font-size: 12px;
 }
 .password-fielderror-login {
   position: absolute;
-  bottom: 14em;
+  bottom: 12.2em;
   left: 4.5em;
   color: red;
   font-size: 12px;
 }
   .login-button {
     width: 175px;
-    margin-left: 6em;
-    margin-top: 50px;
+    margin-left: 5em;
+    margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
     padding: 10px 20px;
@@ -180,77 +180,14 @@ input:focus {
   }
 }
 
-@media (max-width: 500px) {
-  .login-heading {
-    font-size: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 25px;
-    margin-bottom: 15px;
-  }
-  .loginpage {
-    background-color: white;
-    width: 20em;
-    height: 25em;
-    position: relative;
-    border-radius: 1em;
-    box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  .username-fielderror-login {
-    position: absolute;
-    bottom: 20em;
-    left: 3em;
-    color: red;
-    font-size: 12px;
-  }
-  .password-fielderror-login {
-    position: absolute;
-    bottom: 11.5em;
-    left: 3em;
-    color: red;
-    font-size: 12px;
-  }
-  .login-input {
-    width: 70%;
-    margin-left: 2.7em;
-    margin-top: 10px;
-  }
-  .username,
-  .password {
-    margin-top: 10px;
-    padding-top: 5px;
-    margin-left: 2em;
-  }
-  .forget-password,.sign-up{
-    text-align: center;
-    font-size: 1em;
-    margin-top: 1em;
-    color: rgb(70, 70, 220);
-    text-decoration: none;
-    margin-bottom: 2em;
-    margin: 4px 0px 0px 48px;
-    padding: 10px;
-  }
-  .login-button {
-    margin: 35px;
-    margin-left: 4.7em;
-  }
-}
-
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   .App {
     height: 103vh;
   }
   .loginpage {
     background-color: white;
-    width: 20em;
-    height: 25em;
+    width: 19em;
+    height: 23em;
     position: relative;
     border-radius: 1em;
     box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
@@ -259,8 +196,29 @@ input:focus {
     align-items: center;
     justify-content: space-around;
   }
+  .login-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+  .username-fielderror-login {
+    position: absolute;
+    bottom: 18em;
+    left: 4.5em;
+    color: red;
+    font-size: 12px;
+  }
+  .password-fielderror-login {
+    position: absolute;
+    bottom: 10.6em;
+    left: 4.5em;
+    color: red;
+    font-size: 12px;
+  }
   .login-button {
-    width: 150px;
+    width: 140px;
   }
 }
 @media (max-width: 375px) {
@@ -276,7 +234,7 @@ input:focus {
   .loginpage {
     background-color: white;
     width: 18em;
-    height: 26em;
+    height: 22em;
     position: relative;
     border-radius: 1em;
     box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
@@ -286,24 +244,42 @@ input:focus {
     justify-content: space-around;
   }
 .login-heading {
-    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 15px;
+}
+.username, .password {
+  margin: 20px;
+  margin-left: 3.3em;
+  font-size: 12px;
+}
+.login-input {
+  border: none;
+  background-color: rgb(229, 226, 226);
+  height: 12px;
+  width: 62%;
+  border-radius: 0.25em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  margin-bottom: 12px;
+  margin-top: 2px;
+  margin-left: 3em;
 }
 .username-fielderror-login {
   position: absolute;
-  bottom: 20em;
-  left: 3em;
+  bottom: 17.5em;
+  left: 3.3em;
   color: red;
   font-size: 12px;
 }
 .password-fielderror-login {
   position: absolute;
-  bottom: 11em;
-  left: 3em;
+  bottom: 10em;
+  left: 3.3em;
   color: red;
   font-size: 12px;
 }

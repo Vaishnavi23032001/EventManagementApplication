@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../style/updateprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+
 function UpdateProfile() {
   const [fullName, setFullName] = useState({
     value: "",
@@ -21,9 +22,7 @@ function UpdateProfile() {
     );
   };
   const validateMobileNumber = (number) => {
-    // Use a regular expression or any other validation logic to validate the mobile number format
-    const mobileNumberRegex = /^[0-9]{10}$/; // Assuming the mobile number should be 10 digits long
-
+    const mobileNumberRegex = /^[0-9]{10}$/; 
     return mobileNumberRegex.test(number);
   };
 
@@ -78,15 +77,15 @@ function UpdateProfile() {
               value={mobileNumber.value}
               type="text"
               onChange={(e) => {
-                setMobileNumber({ ...mobileNumber, valuee: e.target.value });
+                setMobileNumber({ ...mobileNumber, value: e.target.value });
               }}
               onBlur={() => {
                 setMobileNumber({ ...mobileNumber, isTouched: true });
               }}
               placeholder="Mobile Number"
             />
-            {mobileNumber.isTouched &&
-            !validateMobileNumber(mobileNumber.value) &&
+            {(mobileNumber.isTouched &&
+            !validateMobileNumber(mobileNumber.value)) &&
             mobileNumber.value.length < 10 ? (
               <MobileNumberErrorMessage />
             ) : null}

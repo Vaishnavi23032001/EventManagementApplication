@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../style/loginform.css";
 import { Link } from "react-router-dom";
-
+import axios from 'axios';
 const LoginForm = () => {
+
   const [userName, setUserName] = useState({
     value: "",
     isTouched: false,
@@ -11,6 +12,11 @@ const LoginForm = () => {
     value: "",
     isTouched: false,
   });
+
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
+  
   const UsernameErrorMessage = () => {
     return (
       <p className="username-fielderror-login">
@@ -40,12 +46,11 @@ const LoginForm = () => {
       isTouched: false,
     });
   };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    clearForm();
     alert("Login successful!");
-    console.log(userName.value);
-    console.log(password.value);
+    clearForm();    
   };
   return (
     <>
@@ -98,15 +103,14 @@ const LoginForm = () => {
             <Link to="/ForgotPassword" className="forget-password">Forget Password</Link>
             <br />
             <Link to="/SignUp" className="sign-up">Create a new account</Link>
-            <Link to="/UserPage">
+           
             <button
               type="submit"
               className="login-button"
-              disabled={!getIsFormValid()}
-            >
+              disabled={!getIsFormValid()}>
               Login
             </button>
-            </Link>
+            
             
             <Link to="/AdminPage">Admin</Link>
           </form>

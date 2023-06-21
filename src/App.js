@@ -30,8 +30,6 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/ForgetResetPassword" element={<ForgetResetPassword />} />
-
-          {/* <Route path="/" element={<UserPage />} /> */}
           <Route path="/UserProfile" element={<UserProfile />} />
           <Route path="/UserPage" element={<UserPage />} />
           <Route path="/BookmarkEvents" element={<BookmarkEvents />} />
