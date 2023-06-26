@@ -24,15 +24,15 @@ function Sidebar() {
             Attended Events
           </Link>
           <Link className="menu-item" to="/">
-            Log out
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+              }}
+              style={{ color: "black", width: "5rem" }}
+            >
+              Log out
+            </button>
           </Link>
-          {/* <a className="menu-item" 
-          onClick={()=>{
-            localStorage.removeItem('token')
-          }}
-          href="">
-            Log out
-          </a> */}
         </Menu>
       </div>
     </>

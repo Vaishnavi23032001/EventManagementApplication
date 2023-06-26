@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/userpage.css";
 import { BsFillBookmarkFill } from "react-icons/bs";
 
 const EventTable = ({ events_data }) => {
   const [bookmarkEvents, setbookmarkEvents] = useState([]);
   const [bookEvents, setbookEvents] = useState([]);
-
+  
   const handleBookmark = (eventId) => {
     if (bookmarkEvents.includes(eventId)) {
       // Remove the event from bookmarkEvents

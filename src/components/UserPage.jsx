@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/images.jpg";
 import "../style/userpage.css";
 import EventTable from "./EventTable";
 import Sidebar from "./Sidebar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  
   const keys = ["name"];
-  
+
   const search = (events_data) => {
+    if (!events_data) {
+      return [];
+    }
     return events_data.filter((item) =>
       keys.some((key) => item[key].toLowerCase().includes(searchQuery))
     );
   };
+
   const events = [
     {
       id: 1,
@@ -31,13 +36,13 @@ const UserPage = () => {
       time: "10:00 AM",
       location: "Location 2",
       leftseats: "100",
-      totalseats: "100",  
+      totalseats: "100",
     },
     {
       id: 3,
       name: "Event 3",
       date: "2023-06-01",
-      time:"10.00 Am",
+      time: "10.00 Am",
       location: "Location 2",
       leftseats: "100",
       totalseats: "100",
@@ -46,10 +51,10 @@ const UserPage = () => {
       id: 4,
       name: "Event 4",
       date: "2023-06-01",
-      time:"10.00 Am",
+      time: "10.00 Am",
       location: "Location 4",
       leftseats: "100",
-      totalseats: "100", 
+      totalseats: "100",
     },
     // Add more event objects as needed
   ];
@@ -61,8 +66,9 @@ const UserPage = () => {
             <img src={logo} alt="Logo" />
           </div>
           <div>
-            <div >
-              <input className="search-bar"
+            <div>
+              <input
+                className="search-bar"
                 type="text"
                 placeholder="Search..."
                 onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
@@ -81,6 +87,7 @@ const UserPage = () => {
           <div>
             <h1 className="table-heading">UPCOMING EVENTS</h1>
             {<EventTable events_data={search(events)} />}
+            
           </div>
         </section>
       </div>

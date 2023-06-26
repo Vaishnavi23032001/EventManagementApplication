@@ -1,8 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../style/updateprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+import axios from "axios";
 
 function UpdateProfile() {
   const [fullName, setFullName] = useState({
@@ -22,7 +23,7 @@ function UpdateProfile() {
     );
   };
   const validateMobileNumber = (number) => {
-    const mobileNumberRegex = /^[0-9]{10}$/; 
+    const mobileNumberRegex = /^[0-9]{10}$/;
     return mobileNumberRegex.test(number);
   };
 
@@ -33,11 +34,45 @@ function UpdateProfile() {
   };
 
   const getIsFormValid = () => {
-    return fullName.value.length >= 5 && validateMobileNumber(mobileNumber);
+    return (
+      fullName.value && fullName.value.length >= 5 &&
+      validateMobileNumber(mobileNumber.value)
+    );
   };
-  const handleFormSubmit = (e) => {
+
+  const apiurl = process.env.REACT_APP_API_URL;
+  const userId = localStorage.getItem("userId");
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get(apiurl + "/api/users/" + userId, {
+          headers: {
+            "ngrok-skip-browser-warning": "111",
+          },
+        });
+        const { fullName, mobileNumber } = response.data;
+        setFullName({ value: fullName, isTouched: false });
+        setMobileNumber({ value: mobileNumber, isTouched: false });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserProfile();
+  }, []);
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    alert("Update successfully");
+    try {
+      const response = await axios.patch(apiurl + "/api/users/" + userId, {
+        fullName: fullName.value,
+        mobileNumber: mobileNumber.value,
+      });
+      console.log(response.data);
+      alert("Update successful");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to update");
+    }
   };
 
   return (
@@ -64,6 +99,7 @@ function UpdateProfile() {
               }}
               placeholder="Full name"
             />
+
             {fullName.isTouched && fullName.value.length < 5 ? (
               <FullnameErrorMessage />
             ) : null}
@@ -84,8 +120,9 @@ function UpdateProfile() {
               }}
               placeholder="Mobile Number"
             />
+
             {(mobileNumber.isTouched &&
-            !validateMobileNumber(mobileNumber.value)) &&
+            !validateMobileNumber(mobileNumber.value) )&&
             mobileNumber.value.length < 10 ? (
               <MobileNumberErrorMessage />
             ) : null}

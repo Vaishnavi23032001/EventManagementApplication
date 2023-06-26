@@ -2,18 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../style/userprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 const AdminProfile = () => {
   const [adminProfile, setAdminProfile] = useState({
-    fullName: "John Doe",
-    email: "johndoe@example.com",
-    mobileNumber: "1234567890",
-    username: "johndoe",
+    fullName: "",
+    email: "",
+    mobileNumber: "",
+    username: "",
   });
-
-  useEffect(() => {
-    document.title = "Profile";
-  }, []);
-
   return (
     <>
       <div className="user-profile-body">
@@ -42,12 +39,9 @@ const AdminProfile = () => {
               <span>{adminProfile.username}</span>
             </div>
           </div>
-          {/* <Link >
-              <button className="update-admin-button">Update Details</button>
-            </Link>
-           */}
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

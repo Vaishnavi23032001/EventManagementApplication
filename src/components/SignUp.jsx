@@ -1,10 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../style/signup.css";
 import { validateEmail } from "./utils";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 function SignUp() {
   const [fullName, setFullName] = useState({
@@ -29,11 +31,6 @@ function SignUp() {
   });
   const [role, setRole] = useState("role");
 
-  useEffect(() => {
-    document.title = "Sign Up";
-  }, []);
-
-  
   const FullnameErrorMessage = () => {
     return (
       <p className="fielderror-signup">
@@ -45,7 +42,7 @@ function SignUp() {
     return <p className="fielderror-signup">Email should be proper format</p>;
   };
   const validateMobileNumber = (number) => {
-    const mobileNumberRegex = /^[0-9]{10}$/; 
+    const mobileNumberRegex = /^[0-9]{10}$/;
     return mobileNumberRegex.test(number);
   };
 
@@ -72,10 +69,10 @@ function SignUp() {
     return (
       fullName.value.length >= 5 &&
       validateEmail(email.value) &&
-      // validateMobileNumber(mobileNumber) &&
-       userName.value.length >= 5 &&
-       password.value.length >= 8 &&
-       role !== "role"
+      validateMobileNumber(mobileNumber.value) &&
+      userName.value.length >= 5 &&
+      password.value.length >= 8 &&
+      role !== "role"
     );
   };
 
@@ -102,8 +99,9 @@ function SignUp() {
     });
     setRole("role");
   };
+  const navigate = useNavigate();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const data = {
       fullName: fullName.value,
@@ -113,19 +111,17 @@ function SignUp() {
       password: password.value,
       role: role,
     };
-    
-    axios
-      .post("https://15f6-203-212-221-36.ngrok-free.app/api/users/sign-up", data) 
-      .then((response) => {
-        console.log(response); 
-        
-        alert("Account created!");
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Error creating account");
-      });
+    const apiurl = process.env.REACT_APP_API_URL;
+    try {
+      const response = await axios.post(apiurl + "/api/users", data);
+      console.log(response);
+      toast.success("Account created!", { position: "top-center" });
       clearForm();
+      navigate("/LoginForm");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error!", { position: "top-center" });
+    }
   };
 
   return (
@@ -194,8 +190,8 @@ function SignUp() {
               }}
               placeholder="Mobile Number"
             />
-            {(mobileNumber.isTouched &&
-            !validateMobileNumber(mobileNumber.value)) &&
+            {mobileNumber.isTouched &&
+            !validateMobileNumber(mobileNumber.value) &&
             mobileNumber.value.length < 10 ? (
               <MobileNumberErrorMessage />
             ) : null}
@@ -260,6 +256,7 @@ function SignUp() {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }

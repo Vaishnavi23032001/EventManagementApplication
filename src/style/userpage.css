@@ -98,7 +98,6 @@ td {
   transform: scale(1.25);
 }
 .update-button:hover, .delete-button:hover{
-  background-color: #2b50cb;
   transform: scale(1.25);
 }
 .add-button{
@@ -137,19 +136,31 @@ td {
   }
   .table-heading {
     margin: 20px;
-    font-size: 1.8em;
+    font-size: 16px;
     text-align: center;
   }
   th {
     padding: 0px 0px 0px 0px;
-    font-size: 1.4em;
+    font-size: 12px;
     text-align: center;
   }
   td {
     padding: 20px 0px 20px 0px;
-    font-size: 1rem;
+    font-size: 12px;
     text-align: center;
   }
+  .bookmark-button, .update-button, .delete-button, .book-button {
+    width: 4em;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #2b50cb;
+    background-color: #6cd2e9;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 10px;
+    margin-left: 0px;
+}
 }
 @media (max-width: 620px) {
   .navbar {
@@ -189,8 +200,8 @@ td {
   }
   .table-heading {
     width: 116%;
-    margin: 20px;
-    font-size: 1.5em;
+    margin: 10px;
+    font-size: 16px;
     text-align: center;
   }
   table {
@@ -198,12 +209,12 @@ td {
   }
   th {
     padding: 0px 0px 0px 0px;
-    font-size: 1.1em;
+    font-size: 12px;
     text-align: center;
   }
   td {
     padding: 20px 0px 20px 0px;
-    font-size: 0.8rem;
+    font-size: 12px;
     text-align: center;
   }
 }
@@ -258,16 +269,16 @@ td {
 
   .table-heading {
     margin: 20px;
-    font-size: 1.6rem;
+    font-size:14px;
     text-align: center;
   }
   th {
     padding: 0px 0px 0px 0px;
-    font-size: 1.2rem;
+    font-size: 10px;
   }
   td {
     padding: 20px 0px 20px 0px;
-    font-size: 1rem;
+    font-size: 10px;
     text-align: center;
   }
 }
@@ -315,18 +326,18 @@ td {
   }
 
   table {
-    width: 116%;
+    width: 122%;
     font-size: 50%;
   }
 }
 
 @media (max-width: 380px) {
   .navbar {
-    width: 118%;
-    height: 7rem;
+    width: 122%;
+    height: 5rem;
     display: grid;
-    margin-top: 10px;
-    grid-template-columns: 2rem 1fr 2fr 1fr;
+    margin-top: 5px;
+    grid-template-columns: 1rem 1fr 2fr 1fr;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
@@ -334,7 +345,7 @@ td {
     height: 60px;
   }
   .logo {
-    height: 5rem;
+    height: 4rem;
   }
   input .search-bar {
     border-radius: 4px;
@@ -347,7 +358,7 @@ td {
     margin-left: 21px;
   }
   .search-bar {
-    margin-top: 10px;
+    margin-top: 26px;
     width: 75%;
     margin-left: 20px;
     display: flex;
@@ -363,7 +374,7 @@ td {
   }
 
   table {
-    width: 116%;
+    width: 122%;
     font-size: 50%;
   }
 }

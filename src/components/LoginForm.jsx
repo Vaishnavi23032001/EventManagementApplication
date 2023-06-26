@@ -1,9 +1,11 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/loginform.css";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-const LoginForm = () => {
+import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
 
+const LoginForm = () => {
   const [userName, setUserName] = useState({
     value: "",
     isTouched: false,
@@ -13,10 +15,6 @@ const LoginForm = () => {
     isTouched: false,
   });
 
-  useEffect(() => {
-    document.title = "Login";
-  }, []);
-  
   const UsernameErrorMessage = () => {
     return (
       <p className="username-fielderror-login">
@@ -46,11 +44,27 @@ const LoginForm = () => {
       isTouched: false,
     });
   };
+  const navigate = useNavigate();
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    alert("Login successful!");
-    clearForm();    
+    const data = {
+      username: userName.value,
+      password: password.value,
+    };
+    const apiurl = process.env.REACT_APP_API_URL;
+    try {
+      const response = await axios.post(apiurl + "/api/users/login", data);
+      console.log(response);
+     // const token = response.data.token;
+      localStorage.setItem("token", response.data.token);
+      toast.success("Login successful!", { position: "top-center" });
+      clearForm();
+      navigate("/UserPage");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error!", { position: "top-center" });
+    }
   };
   return (
     <>
@@ -74,7 +88,7 @@ const LoginForm = () => {
                 setUserName({ ...userName, isTouched: true });
               }}
             />
-            {userName.isTouched && userName.value.length <5? (
+            {userName.isTouched && userName.value.length < 5 ? (
               <UsernameErrorMessage />
             ) : null}
 
@@ -100,22 +114,26 @@ const LoginForm = () => {
               <PasswordErrorMessage />
             ) : null}
             <br />
-            <Link to="/ForgotPassword" className="forget-password">Forget Password</Link>
+            <Link to="/ForgotPassword" className="forget-password">
+              Forget Password
+            </Link>
             <br />
-            <Link to="/SignUp" className="sign-up">Create a new account</Link>
-           
+            <Link to="/SignUp" className="sign-up">
+              Create a new account
+            </Link>
+
             <button
               type="submit"
               className="login-button"
-              disabled={!getIsFormValid()}>
+              disabled={!getIsFormValid()}
+            >
               Login
             </button>
-            
-            
             <Link to="/AdminPage">Admin</Link>
           </form>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

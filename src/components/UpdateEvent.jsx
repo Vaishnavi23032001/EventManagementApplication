@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../style/addevent.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+
 function UpdateEvent() {
   const [eventName, setEventName] = useState("");
   const [date, setDate] = useState("");

@@ -2,18 +2,36 @@ import React, { useState, useEffect } from "react";
 import "../style/userprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState({
-    fullName: "John Doe",
-    email: "johndoe@example.com",
-    mobileNumber: "1234567890",
-    username: "johndoe",
+    fullName: "",
+    email: "",
+    mobileNumber: "",
+    username: "",
   });
-
+  const apiurl = process.env.REACT_APP_API_URL;
   useEffect(() => {
-    document.title = "Profile";
+    const userId = localStorage.getItem("userId");
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get(apiurl + "/api/users/" + userId, {
+          headers: {
+            'ngrok-skip-browser-warning': '111'
+          }
+         });
+        setUserProfile(response.data);
+      } catch (error) {
+        console.log(error);
+        toast.error("Error!", { position: "top-center" });
+      }
+    };
+    fetchUserProfile();
   }, []);
-
+  
+  
   return (
     <>
       <div className="user-profile-body">
@@ -49,6 +67,7 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "../style/addevent.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
-function AddEvent() {
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
+function AddEvent() {
   const [eventName, setEventName] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -11,11 +13,26 @@ function AddEvent() {
   const [totalseat, setTotalSeat] = useState("");
   const [leftseat, setLeftSeat] = useState("");
 
-  const handleEventSubmit = (e) => {
+  const handleEventSubmit = async (e) => {
     e.preventDefault();
-    console.log("Event Name:", eventName);
-    alert("Event Added successfully");
-    clearForm();
+    const apiurl = process.env.REACT_APP_API_URL;
+    const eventsData={
+      name: eventName,
+      date: date,
+      time: time,
+      location: location,
+      totalSeats: totalseat,
+      seatsLeft : leftseat,
+    }
+    try {
+      const response = await axios.post(apiurl + "/api/events", eventsData);
+      console.log("Event added successfully:", response.data);
+      toast.success("Event added successfully!", { position: "top-center" });
+      clearForm();
+    } catch (error) {
+      console.error(error);
+      toast.error("Error!", { position: "top-center" });
+    }
   };
   const clearForm = () => {
     setEventName("");
@@ -92,6 +109,7 @@ function AddEvent() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
