@@ -4,6 +4,12 @@ import { slide as Menu } from "react-burger-menu";
 import "../style/sidebar.css";
 
 function Sidebar() {
+  
+  const logout = () =>{
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("userId");
+    console.log("log out");
+  }
   return (
     <>
       <div className="person-menu-1">
@@ -25,9 +31,7 @@ function Sidebar() {
           </Link>
           <Link className="menu-item" to="/">
             <button
-              onClick={() => {
-                localStorage.removeItem("token");
-              }}
+              onClick={logout()}
               style={{ color: "black", width: "5rem" }}
             >
               Log out

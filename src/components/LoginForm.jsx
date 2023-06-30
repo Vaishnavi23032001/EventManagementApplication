@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../style/loginform.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import axios from "axios";
+import { login } from "../api/userApi";
 
 const LoginForm = () => {
   const [userName, setUserName] = useState({
@@ -48,22 +48,22 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const data = {
+    const userdata = {
       username: userName.value,
       password: password.value,
     };
-    const apiurl = process.env.REACT_APP_API_URL;
     try {
-      const response = await axios.post(apiurl + "/api/users/login", data);
+      const response = await login(userdata);
       console.log(response);
-     // const token = response.data.token;
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("userId", response.userId);
       toast.success("Login successful!", { position: "top-center" });
       clearForm();
       navigate("/UserPage");
     } catch (error) {
       console.log(error);
-      toast.error("Error!", { position: "top-center" });
+      console.log("error occured while local storage set");
+      toast.error("Data not found!", { position: "top-center" });
     }
   };
   return (

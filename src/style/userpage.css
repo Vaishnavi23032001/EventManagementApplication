@@ -90,7 +90,6 @@ td {
 }
 .delete-button{
   background-color: rgb(252, 48, 48);
-
 }
 .bookmark-button.bookmarked , .book-button.booked{
   /* color: red  */
@@ -160,7 +159,13 @@ td {
     cursor: pointer;
     font-size: 10px;
     margin-left: 0px;
-}
+  }
+  .update-button{
+    background-color: orange;
+  }
+  .delete-button{
+    background-color: rgb(252, 48, 48);
+  }
 }
 @media (max-width: 620px) {
   .navbar {

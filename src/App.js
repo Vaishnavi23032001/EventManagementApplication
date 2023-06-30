@@ -43,7 +43,7 @@ function App() {
           <Route path="/AdminProfile" element={<AdminProfile />} />
           <Route path="/userlist" element={<UserList />} />
           <Route path="/AddEvent" element={<AddEvent />} />
-          <Route path="/UpdateEvent" element={<UpdateEvent />} />
+          <Route path="/UpdateEvent/:eventId" element={<UpdateEvent />} />
 
         </Routes>
       </BrowserRouter>

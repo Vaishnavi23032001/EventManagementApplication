@@ -3,8 +3,8 @@ import logo from "../assets/images.jpg";
 import "../style/userpage.css";
 import EventTable from "./EventTable";
 import Sidebar from "./Sidebar";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getAllEvent } from "../api/eventApi";
 
 const UserPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,45 +19,23 @@ const UserPage = () => {
     );
   };
 
-  const events = [
-    {
-      id: 1,
-      name: "Event 1",
-      date: "2023-06-01",
-      time: "10:00 AM",
-      location: "Location 1",
-      leftseats: "100",
-      totalseats: "100",
-    },
-    {
-      id: 2,
-      name: "Event 2",
-      date: "2023-06-01",
-      time: "10:00 AM",
-      location: "Location 2",
-      leftseats: "100",
-      totalseats: "100",
-    },
-    {
-      id: 3,
-      name: "Event 3",
-      date: "2023-06-01",
-      time: "10.00 Am",
-      location: "Location 2",
-      leftseats: "100",
-      totalseats: "100",
-    },
-    {
-      id: 4,
-      name: "Event 4",
-      date: "2023-06-01",
-      time: "10.00 Am",
-      location: "Location 4",
-      leftseats: "100",
-      totalseats: "100",
-    },
-    // Add more event objects as needed
-  ];
+  const [eventsData, setEventsData] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchEvents = async () => {
+      if (!localStorage.getItem("token")) {
+        navigate("/LoginForm");
+      }
+      try {
+        const allEvents = await getAllEvent();
+        setEventsData(allEvents);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+    fetchEvents();
+  }, []);
+
   return (
     <>
       <div className="event_page">
@@ -86,8 +64,7 @@ const UserPage = () => {
         <section className="table-section">
           <div>
             <h1 className="table-heading">UPCOMING EVENTS</h1>
-            {<EventTable events_data={search(events)} />}
-            
+            {<EventTable events_data={search(eventsData)} />}
           </div>
         </section>
       </div>

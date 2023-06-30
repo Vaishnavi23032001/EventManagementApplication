@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../style/userprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-
+import { userprofile } from "../api/userApi";
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState({
     fullName: "",
@@ -12,24 +11,19 @@ const UserProfile = () => {
     mobileNumber: "",
     username: "",
   });
-  const apiurl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get(apiurl + "/api/users/" + userId, {
-          headers: {
-            'ngrok-skip-browser-warning': '111'
-          }
-         });
-        setUserProfile(response.data);
+        const response = await userprofile(userId);
+        setUserProfile(response);
       } catch (error) {
         console.log(error);
         toast.error("Error!", { position: "top-center" });
       }
     };
     fetchUserProfile();
-  }, []);
+  },[]);
   
   
   return (

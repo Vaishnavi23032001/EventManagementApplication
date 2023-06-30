@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/addevent.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+import { toast, ToastContainer } from "react-toastify";
+import { getEvent,updateEvent } from '../api/eventApi';
 
 function UpdateEvent() {
   const [eventName, setEventName] = useState("");
@@ -10,12 +12,43 @@ function UpdateEvent() {
   const [location, setLocation] = useState("");
   const [seat, setSeat] = useState("");
   const [leftseat, setLeftSeat] = useState("");
+  const { eventId } = useParams();
 
-  const handleEventSubmit = (e) => {
+  useEffect(() => {
+    const handleEdit = async () => {
+      try {
+        const eventData = await getEvent(eventId);
+        setEventName(eventData.name);
+        setDate(eventData.date);
+        setTime(eventData.time);
+        setLocation(eventData.location);
+        setLeftSeat(eventData.seatsLeft);
+        setSeat(eventData.totalSeats);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    handleEdit(eventId);
+  }, [eventId]);
+
+  const handleEventSubmit = async (e) => {
     e.preventDefault();
-    // Perform any necessary actions with the event data (e.g., submit to a server)
-    console.log("Event Name:", eventName);
-    alert("Event Added successfully");
+    try {
+      const eventData = {
+        name: eventName,
+        date: date,
+        time: time,
+        location: location,
+        seatsLeft: leftseat,
+        totalSeats: seat,
+      };
+      const response = await updateEvent(eventId, eventData);
+      console.log('Event updated successfully:', response);
+      toast.success('Event updated successfully');
+    } 
+    catch (error) {
+      toast.error("Error updating event");
+    }
   };
 
   return (
@@ -78,6 +111,7 @@ function UpdateEvent() {
           </form>
         </div>
       </div>
+      <ToastContainer/>
     </>
   );
 }

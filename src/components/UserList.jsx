@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style/userlist.css";
 import "../style/userpage.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+import { userlist } from "../api/userApi";
+
 function UserList() {
+  const [userList, setUserList] = useState([]);
+  useEffect(() => {
+    const userList = async () => {
+      try {
+        const response = await userlist();
+        setUserList(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    userList();
+  }, []);
   return (
     <>
       <div className="userlist-page"></div>
@@ -18,28 +32,17 @@ function UserList() {
             <th>Email</th>
             <th>Mobile Number</th>
             <th>Username</th>
-            <th>Role</th>
           </tr>
         </thead>
         <tbody>
-          {/* {events_data.map((item) => (
-          <tr key={item.id}>
-            <td>{item.name}</td>
-            <td>{item.date}</td>
-            <td>{item.time}</td>
-            <td>{item.location}</td>
-            <td>{item.cost}</td>
-            <td>{item.totalseats}</td>
-            <td>{item.leftseats}</td>
-          </tr> */}
-
-          <tr>
-            <td>John Doe</td>
-            <td>johndoe@example.com</td>
-            <td>1234567890</td>
-            <td>johndoe</td>
-            <td>Admin</td>
-          </tr>
+          {userList.map((item) => (
+            <tr key={item.id}>
+              <td>{item.fullName}</td>
+              <td>{item.email}</td>
+              <td>{item.mobileNumber}</td>
+              <td>{item.username}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>

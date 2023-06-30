@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import logo from "../assets/images.jpg";
 import Sidebar from "../components/Sidebar";
 
-function BookmarkEvents({events_data}) {
-
+function BookmarkEvents({ events_data }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [bookEvents, setbookEvents] = useState([]);
   const keys = ["name"];
+
   const search = (events_data) => {
     return events_data.filter((item) =>
       keys.some((key) => item[key].toLowerCase().includes(searchQuery))
@@ -36,9 +36,7 @@ function BookmarkEvents({events_data}) {
   const handleBook = (eventId) => {
     if (bookEvents.includes(eventId)) {
       // Remove the event from bookmarkEvents
-      const updatedbookEvents = bookEvents.filter(
-        (id) => id !== eventId
-      );
+      const updatedbookEvents = bookEvents.filter((id) => id !== eventId);
       setbookEvents(updatedbookEvents);
     } else {
       // Add the event to bookmarkEvents
@@ -49,8 +47,9 @@ function BookmarkEvents({events_data}) {
   const isEventBooked = (eventId) => {
     return bookEvents.includes(eventId);
   };
-  events_data=search(bookmarkEvents);
   
+  events_data = search(bookmarkEvents);
+
   return (
     <>
       <nav className="navbar">
@@ -77,40 +76,40 @@ function BookmarkEvents({events_data}) {
       <section>
         <h1 className="table-heading">Bookmark Events</h1>
         <table>
-      <thead>
-        <tr>
-          <th>Event Name</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Location</th>
-          <th>Left Seats</th>
-          <th>Total Seats</th>
-          <th>Book</th>
-        </tr>
-      </thead>
-      <tbody>
-        {events_data.map((item) => (
-          <tr key={item.id}>
-            <td>{item.name}</td>
-            <td>{item.date}</td>
-            <td>{item.time}</td>
-            <td>{item.location}</td>
-            <td>{item.leftseats}</td>
-            <td>{item.totalseats}</td>
-            <td>
-              <button 
-              className={`book-button ${
-                isEventBooked(item.id) ? "booked" : ""
-              }`}
-              onClick={() => handleBook(item.id)}>Book</button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  
-        
-        {/* {<EventTable events_data={search(bookmarkEvents)} />} */}
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Location</th>
+              <th>Left Seats</th>
+              <th>Total Seats</th>
+              <th>Book</th>
+            </tr>
+          </thead>
+          <tbody>
+            {events_data.map((item) => (
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.date}</td>
+                <td>{item.time}</td>
+                <td>{item.location}</td>
+                <td>{item.leftseats}</td>
+                <td>{item.totalseats}</td>
+                <td>
+                  <button
+                    className={`book-button ${
+                      isEventBooked(item.id) ? "booked" : ""
+                    }`}
+                    onClick={() => handleBook(item.id)}
+                  >
+                    Book
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </section>
     </>
   );
