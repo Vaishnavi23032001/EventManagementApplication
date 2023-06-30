@@ -1,52 +1,36 @@
-/* .App {
+.event_page {
   height: 100vh;
   width: 100%;
   display: inline;
   align-items: start;
-}
-html {
-  font-size: 62.5%;
-}
-body {
-  background-image: none;
-} */
-
-.event_page{
-  height: 100vh;
-  width: 100%;
-  display: inline;
-  align-items: start;
-  background-image: none;
+  margin-bottom: 10px;
 }
 .navbar {
   width: 100%;
-  height: 7rem;
+  height: 4rem;
   display: grid;
-  margin-top: 10px;
   grid-template-columns: 2rem 1fr 2fr 1fr;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 80px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 .logo {
   display: grid;
   grid-column: 2/3;
   justify-content: start;
-  align-items: center;
+  align-items: start;
+  margin-top: 7px;
 }
 img {
-  height: 100px;
+  height: 50px;
 }
 .search-bar {
-  margin-top: 35px;
   width: 70%;
-  margin-left: 20px;
+  height: 1.5em;
+  margin-left: 40px;
   display: flex;
+  margin-top: 15px;
 }
-.search-logo {
-  height: 43px;
-  width: 30px;
-}
-input .search-bar{
+input .search-bar {
   border-radius: 4px;
   border: 2px solid #ccc;
   height: 40px;
@@ -55,34 +39,86 @@ input .search-bar{
 .person-menu .menu {
   display: flex;
   flex-direction: row-reverse;
-  margin-top: 34px;
+  margin-top: 15px;
   margin-left: 181px;
-  height: 40px;
-  width: 40px;
+  height: 10px;
+  width: 30px;
 }
 
 .table-heading {
   margin: 20px;
-  font-size: 2.3rem;
+  font-size: 16px;
+  font-weight: 700;
   text-align: center;
 }
 table {
   width: 100%;
-  
 }
 th {
   padding: 0px 0px 0px 0px;
-  font-size: 1.8rem;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
 }
 td {
   padding: 20px 0px 20px 0px;
-  font-size: 1.2rem;
+  font-size: 12px;
   text-align: center;
 }
 .logo {
   height: 6rem;
 }
 
+.bookmark-button, .update-button, .delete-button, .book-button{
+  width: 4em;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #2b50cb;
+  background-color: #6cd2e9;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 15px;
+}
+.book-button{
+  width: 5em;
+  height: 2.3em;
+  font-size: 12px;
+}
+.update-button{
+  background-color: orange;
+}
+.delete-button{
+  background-color: rgb(252, 48, 48);
+
+}
+.bookmark-button.bookmarked , .book-button.booked{
+  /* color: red  */
+  background-color: #2b50cb;
+  transform: scale(1.25);
+}
+.update-button:hover, .delete-button:hover{
+  transform: scale(1.25);
+}
+.add-button{
+  width: 5em;
+  height: 5em;
+  padding: 10px;
+  border-radius: 35px;
+  border: 1px solid #2b50cb;
+  background-color: #1741ec;
+  color: white;
+  cursor: pointer;
+}
+.add-button:hover{
+  transform: scale(1.25);
+}
+#addbutton{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2em 2em 2em 2em;
+}
 
 @media (max-width: 768px) {
   .person-menu .menu {
@@ -91,25 +127,63 @@ td {
     margin-left: 150px;
     padding-right: 0px;
   }
+  .search-bar {
+    margin-top: 14px;
+    width: 60%;
+    height: 1.5em;
+    margin-left: 40px;
+    display: flex;
+  }
+  .table-heading {
+    margin: 20px;
+    font-size: 16px;
+    text-align: center;
+  }
+  th {
+    padding: 0px 0px 0px 0px;
+    font-size: 12px;
+    text-align: center;
+  }
+  td {
+    padding: 20px 0px 20px 0px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .bookmark-button, .update-button, .delete-button, .book-button {
+    width: 4em;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #2b50cb;
+    background-color: #6cd2e9;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 10px;
+    margin-left: 0px;
+}
 }
 @media (max-width: 620px) {
   .navbar {
-    width: 116%;
     height: 9rem;
+    width: 116%;
     display: grid;
     margin-top: 10px;
-    grid-template-columns: 3rem 1fr 2fr 1fr 4rem;
+    grid-template-columns: 2rem 1fr 2fr 1fr;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
   img {
-    height: 79px;
+    height: 7em;
   }
   .logo {
     height: 5rem;
+    display: grid;
+    grid-column: 2/3;
+    justify-content: start;
+    align-items: center;
   }
   .search-bar {
-    margin-top: 25px;
+    margin-top: 50px;
     width: 70%;
     margin-left: 20px;
     display: flex;
@@ -120,13 +194,28 @@ td {
   }
   .person-menu .menu {
     margin: 0px;
-    padding-top: 23px;
+    padding-top: 30px;
     padding-right: 0px;
     margin-left: 150px;
   }
-
+  .table-heading {
+    width: 116%;
+    margin: 10px;
+    font-size: 16px;
+    text-align: center;
+  }
   table {
     width: 116%;
+  }
+  th {
+    padding: 0px 0px 0px 0px;
+    font-size: 12px;
+    text-align: center;
+  }
+  td {
+    padding: 20px 0px 20px 0px;
+    font-size: 12px;
+    text-align: center;
   }
 }
 @media (max-width: 535px) {
@@ -135,7 +224,7 @@ td {
     height: 7rem;
     display: grid;
     margin-top: 10px;
-    grid-template-columns: 2rem 1fr 3fr 1fr 2rem;
+    grid-template-columns: 2rem 1fr 2fr 1fr;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
@@ -151,7 +240,7 @@ td {
     margin-left: 20px;
     display: flex;
   }
-  input .search-bar{
+  input .search-bar {
     border-radius: 4px;
     border: 1px solid #ccc;
     height: 30px;
@@ -177,19 +266,19 @@ td {
     width: 116%;
     font-size: 50%;
   }
-  
-.table-heading {
-  margin: 20px;
-  font-size: 1.6rem;
-  text-align: center;
-}
+
+  .table-heading {
+    margin: 20px;
+    font-size:14px;
+    text-align: center;
+  }
   th {
     padding: 0px 0px 0px 0px;
-    font-size: 1.2rem;
+    font-size: 10px;
   }
   td {
     padding: 20px 0px 20px 0px;
-    font-size: 1rem;
+    font-size: 10px;
     text-align: center;
   }
 }
@@ -200,7 +289,7 @@ td {
     height: 5.8rem;
     display: grid;
     margin-top: 10px;
-    grid-template-columns: 2rem 1fr 2fr 2fr 2rem;
+    grid-template-columns: 2rem 1fr 2fr 1fr;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
@@ -210,7 +299,7 @@ td {
   .logo {
     height: 5rem;
   }
-  input .search-bar{
+  input .search-bar {
     border-radius: 4px;
     border: 1px solid #ccc;
     height: 30px;
@@ -237,18 +326,18 @@ td {
   }
 
   table {
-    width: 116%;
+    width: 122%;
     font-size: 50%;
   }
 }
 
 @media (max-width: 380px) {
   .navbar {
-    width: 118%;
-    height: 7rem;
+    width: 122%;
+    height: 5rem;
     display: grid;
-    margin-top: 10px;
-    grid-template-columns: 2rem 1fr 2fr 2fr 2rem;
+    margin-top: 5px;
+    grid-template-columns: 1rem 1fr 2fr 1fr;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
@@ -256,9 +345,9 @@ td {
     height: 60px;
   }
   .logo {
-    height: 5rem;
+    height: 4rem;
   }
-  input .search-bar{
+  input .search-bar {
     border-radius: 4px;
     border: 1px solid #ccc;
     height: 30px;
@@ -269,7 +358,7 @@ td {
     margin-left: 21px;
   }
   .search-bar {
-    margin-top: 10px;
+    margin-top: 26px;
     width: 75%;
     margin-left: 20px;
     display: flex;
@@ -285,72 +374,7 @@ td {
   }
 
   table {
-    width: 116%;
+    width: 122%;
     font-size: 50%;
   }
 }
-
-/* 
-
-@media (max-width: 1080px) {
-  .navbar {
-    height: 11rem;
-    grid-template-columns: 2rem 3fr 3fr 1fr 2rem;
-  }
-  .logo {
-    height: 8rem;
-  }
-}
-@media (max-width: 998px) {
-  .navbar {
-    height: 11rem;
-    grid-template-columns: 2rem 2fr 3fr 10rem 2rem;
-  }
-
-  .logo {
-    height: 6rem;
-  }
-  .search-bar {
-    margin-top: 35px;
-    width: 70%;
-  }
-  .person-menu a {
-    display: block;
-    padding: 14px;
-  }
-  .menu {
-    height: 100%;
-    width: 100%;
-  }
-  .table-section {
-    display: contents;
-  }
-  h1 {
-    margin: 20px;
-    font-size: 2.6rem;
-    text-align: center;
-  }
-  th {
-    font-size: 1.6rem;
-    padding: 20px;
-  }
-}
-
-@media (max-width: 798px) {
-  .main-nav {
-    height: 6rem;
-    grid-template-columns: 1rem 2fr 1fr 1fr 1rem;
-  }
-
-  .logo,
-  .social-media ul {
-    height: 6rem;
-  }
-}
-@media (max-width: 520px) {
-  .main-nav {
-    height: 6rem;
-    grid-template-columns: 1rem 4fr 1fr 1fr 1rem;
-  }
-  
-} */

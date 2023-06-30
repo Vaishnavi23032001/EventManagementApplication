@@ -1,21 +1,20 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
-    position: fixed;
-    width: 36px;
-    height: 30px;
-    left: 90%;
-    top: 3em;
+    position: absolute;
+    width: 25px;
+    height: 20px;
+    margin: 1.3em 0em 0em 15em;
     flex-direction: row-reverse;
   }
   
   /* Color/shape of burger icon bars */
   .bm-burger-bars {
-    background: #373a47;
+    background: #000000;
   }
   
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
-    background: #a90000;
+    background: #52c7fd;
   }
   
   /* Position and sizing of clickable cross button */
@@ -26,6 +25,7 @@
   
   /* Color/shape of close button cross */
   .bm-cross {
+    right: 8px;
     background: #ffffff;
   }
   
@@ -34,15 +34,15 @@
     Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
     */
   .bm-menu-wrap {
-    position: fixed;
+    position: right;
     height: 100%;
   }
-  
   /* General sidebar styles */
   .bm-menu {
     background: #373a47;
     padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
+    font-size: 16px;
+    overflow: scroll;
   }
   
   /* Morph shape necessary with bubble or elastic */
@@ -64,6 +64,7 @@
   /* Styling of overlay */
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+    position: relative;
   }
   
   /* Individual item */
@@ -81,28 +82,86 @@
     color: #ffffff;
   }
 
-/*   
-  @media (max-width: 764px){
+  @media (max-width: 1025px){
     .bm-burger-button {
       position: fixed;
-      width: 36px;
-      height: 30px;
-      left: 30em;
-      top: 3em;
+      width: 25px;
+      height: 25px;
+      left: 45em;
+      top: 0em;
       flex-direction: row-reverse;
+    }
+    .bm-cross {
+      right: 8px;
+      background: #ffffff;
+    }
+    .bm-menu-wrap {
+      position: right;
+      height: 50%;
+    }
+    .bm-overlay {
+      background: rgba(0, 0, 0, 0.3);
+      position: relative;
     }
   }
-  @media (max-width: 1024px){
+  
+  @media (max-width: 770px){
     .bm-burger-button {
       position: fixed;
-      width: 36px;
-      height: 30px;
-      left: 60em;
-      top: 3em;
+      width: 25px;
+      height: 25px;
+      left: 30em;
+      top: 0em;
       flex-direction: row-reverse;
     }
-  } */
-  
+    .bm-cross {
+      right: 8px;
+      background: #ffffff;
+    }
+  }
+  @media (max-width: 430px){
+    .bm-burger-button {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      left: 13em;
+      top: 0em;
+      flex-direction: row-reverse;
+    }
+    .bm-cross {
+      right: 1px;
+      background: #ffffff;
+    }
+  }
+  @media (max-width: 376px){
+    .bm-burger-button {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      left: 10em;
+      top: 0.5em;
+      flex-direction: row-reverse;
+    }
+    .bm-cross {
+      right: 1px;
+      background: #ffffff;
+    }
+  }
+
+  @media (max-width: 321px){
+    .bm-burger-button {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      left: 7em;
+      top: 0.5em;
+      flex-direction: row-reverse;
+    }
+    .bm-cross {
+      right: 1px;
+      background: #ffffff;
+    }
+  }
   
   
   

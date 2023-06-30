@@ -1,32 +1,38 @@
-import React, { useState } from "react";
-
+import React from "react";
+import { Link } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
-import "./sidebar.css";
+import "../style/sidebar.css";
 
 function Sidebar() {
   return (
     <>
       <div className="person-menu-1">
         <Menu>
-          
-          <a className="menu-item" href="/EventPage">
+          <Link to="/UserPage" className="menu-item">
             Home
-          </a>
-          <a className="menu-item" href="/Profile">
-            Profile
-          </a>
-          <a className="menu-item" href="/BookmarkEvents">
+          </Link>
+          <Link className="menu-item" to="/UserProfile">
+            View Profile
+          </Link>
+          <Link className="menu-item" to="/BookmarkEvents">
             Bookmark Events
-          </a>
-          <a className="menu-item" href="/BookedEvents">
+          </Link>
+          <Link className="menu-item" to="/BookedEvents">
             Booked Events
-          </a>
-          <a className="menu-item" href="/AttendedEvents">
+          </Link>
+          <Link className="menu-item" to="/AttendedEvents">
             Attended Events
-          </a>
-          <a className="menu-item" href="/">
-            Log out
-          </a>
+          </Link>
+          <Link className="menu-item" to="/">
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+              }}
+              style={{ color: "black", width: "5rem" }}
+            >
+              Log out
+            </button>
+          </Link>
         </Menu>
       </div>
     </>

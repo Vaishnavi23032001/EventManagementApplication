@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { validateEmail } from "./utils";
-import "./forgotpassword.css";
-
+import "../style/forgotpassword.css";
+import { ImCross } from "react-icons/im";
 const ForgotPassword = () => {
   const [email, setEmail] = useState({
     value: "",
@@ -14,7 +14,11 @@ const ForgotPassword = () => {
   });
 
   const EmailErrorMessage = () => {
-    return <p className="email-fielderror-forgetpassword">Email should be proper format</p>;
+    return (
+      <p className="email-fielderror-forgetpassword">
+        Email should be proper format
+      </p>
+    );
   };
   const UsernameErrorMessage = () => {
     return (
@@ -36,9 +40,13 @@ const ForgotPassword = () => {
     <div className="forgot-password-body">
       <div className="forgot-password-page">
         <form onSubmit={handleSubmit}>
+          <Link to="/LoginForm" className="cross-btn">
+            <ImCross />
+          </Link>
           <h1 className="forgot-password-heading">Forgot Password</h1>
-          <label className="email">Email</label>
-          <br />
+          <label className="email">
+            Email<sup>*</sup>
+          </label>
           <input
             className="forgot-password-input"
             type="email"
@@ -56,9 +64,9 @@ const ForgotPassword = () => {
           !validateEmail(email.value) ? (
             <EmailErrorMessage />
           ) : null}
-          <br />
-          <label className="email">Username</label>
-          <br />
+          <label className="email">
+            Username<sup>*</sup>
+          </label>
           <input
             className="forgot-password-input"
             type="username"
@@ -74,15 +82,12 @@ const ForgotPassword = () => {
           {username.isTouched && username.value.length < 5 ? (
             <UsernameErrorMessage />
           ) : null}
-          <br />
-          <button type="submit" className="forgot-password-button">
-            <Link to="/ResetPassword">Reset Password</Link>
-          </button>
+          <Link to="/ForgetResetPassword">
+            <button type="submit" className="forgot-password-button">
+              Reset Password
+            </button>
+          </Link>
         </form>
-
-        <Link to="/" className="back-to-login">
-          Back to Login
-        </Link>
       </div>
     </div>
   );

@@ -1,55 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/images.jpg";
-import "./eventpage.css";
-import { BsPersonFill } from "react-icons/bs";
+import "../style/userpage.css";
 import EventTable from "./EventTable";
-import { BsSearch } from "react-icons/bs";
 import Sidebar from "./Sidebar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Event = () => {
+const UserPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const keys = ["name"];
+
   const search = (events_data) => {
+    if (!events_data) {
+      return [];
+    }
     return events_data.filter((item) =>
       keys.some((key) => item[key].toLowerCase().includes(searchQuery))
     );
   };
+
   const events = [
     {
       id: 1,
-      image: "aa",
       name: "Event 1",
-      datetime: "2023-06-01",
+      date: "2023-06-01",
+      time: "10:00 AM",
       location: "Location 1",
-      cost: "100 Rs",
-      seats: "100",
+      leftseats: "100",
+      totalseats: "100",
     },
     {
       id: 2,
-      image: "aa",
       name: "Event 2",
-      datetime: "2023-06-01",
-      location: "Location 1",
-      cost: "100 Rs",
-      seats: "100",
+      date: "2023-06-01",
+      time: "10:00 AM",
+      location: "Location 2",
+      leftseats: "100",
+      totalseats: "100",
     },
     {
       id: 3,
-      image: "aa",
       name: "Event 3",
-      datetime: "2023-06-01",
-      location: "Location 1",
-      cost: "100 Rs",
-      seats: "100",
+      date: "2023-06-01",
+      time: "10.00 Am",
+      location: "Location 2",
+      leftseats: "100",
+      totalseats: "100",
     },
     {
       id: 4,
-      image: "aa",
       name: "Event 4",
-      datetime: "2023-06-01",
-      location: "Location 1",
-      cost: "100 Rs",
-      seats: "100",
+      date: "2023-06-01",
+      time: "10.00 Am",
+      location: "Location 4",
+      leftseats: "100",
+      totalseats: "100",
     },
     // Add more event objects as needed
   ];
@@ -61,13 +66,13 @@ const Event = () => {
             <img src={logo} alt="Logo" />
           </div>
           <div>
-            <div >
-              <input className="search-bar"
+            <div>
+              <input
+                className="search-bar"
                 type="text"
                 placeholder="Search..."
                 onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
               />
-              <BsSearch className="search-logo" />
             </div>
           </div>
           <div className="person-menu">
@@ -80,8 +85,9 @@ const Event = () => {
 
         <section className="table-section">
           <div>
-            <h1 className="table-heading">Upcoming Events</h1>
+            <h1 className="table-heading">UPCOMING EVENTS</h1>
             {<EventTable events_data={search(events)} />}
+            
           </div>
         </section>
       </div>
@@ -89,4 +95,4 @@ const Event = () => {
   );
 };
 
-export default Event;
+export default UserPage;

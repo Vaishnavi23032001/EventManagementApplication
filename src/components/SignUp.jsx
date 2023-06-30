@@ -1,7 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import "./signup.css";
+import "../style/signup.css";
 import { validateEmail } from "./utils";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ImCross } from "react-icons/im";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 function SignUp() {
   const [fullName, setFullName] = useState({
@@ -37,19 +42,10 @@ function SignUp() {
     return <p className="fielderror-signup">Email should be proper format</p>;
   };
   const validateMobileNumber = (number) => {
-    // Use a regular expression or any other validation logic to validate the mobile number format
-    const mobileNumberRegex = /^[0-9]{10}$/; // Assuming the mobile number should be 10 digits long
-
+    const mobileNumberRegex = /^[0-9]{10}$/;
     return mobileNumberRegex.test(number);
   };
 
-  // const handleMobileNumberChange = (e) => {
-  //   const value = e.target.value;
-
-  //   if (validateMobileNumber(value) || value === "") {
-  //     setMobileNumber(value);
-  //   }
-  // };
   const MobileNumberErrorMessage = () => {
     return (
       <p className="fielderror-signup">Mobile number must be 10 digit number</p>
@@ -73,7 +69,7 @@ function SignUp() {
     return (
       fullName.value.length >= 5 &&
       validateEmail(email.value) &&
-      validateMobileNumber(mobileNumber) &&
+      validateMobileNumber(mobileNumber.value) &&
       userName.value.length >= 5 &&
       password.value.length >= 8 &&
       role !== "role"
@@ -103,29 +99,39 @@ function SignUp() {
     });
     setRole("role");
   };
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    alert("Account created!");
-    clearForm();
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    //handleSubmit(e);
-    if (getIsFormValid()) {
-      handleSubmit(e);
+    const data = {
+      fullName: fullName.value,
+      email: email.value,
+      mobileNumber: mobileNumber.value,
+      username: userName.value,
+      password: password.value,
+      role: role,
+    };
+    const apiurl = process.env.REACT_APP_API_URL;
+    try {
+      const response = await axios.post(apiurl + "/api/users", data);
+      console.log(response);
+      toast.success("Account created!", { position: "top-center" });
+      clearForm();
+      navigate("/LoginForm");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error!", { position: "top-center" });
     }
-    // alert("Account created!");
-    // clearForm();
   };
 
   return (
     <>
       <div className="signup-body">
         <form className="signup_form" onSubmit={handleFormSubmit}>
-          <h2>Sign Up</h2>
-
+          <Link to="/LoginForm" className="cross-btn">
+            <ImCross />
+          </Link>
+          <h1 className="signup-heading">Sign Up</h1>
           <div className="Field">
             <label>
               Full name <sup>*</sup>
@@ -162,9 +168,9 @@ function SignUp() {
               }}
               placeholder="Email address"
             />
-            {(email.isTouched &&
-            email.value.length <10 &&
-            !validateEmail(email.value)) ? (
+            {email.isTouched &&
+            email.value.length < 10 &&
+            !validateEmail(email.value) ? (
               <EmailErrorMessage />
             ) : null}
           </div>
@@ -177,15 +183,16 @@ function SignUp() {
               value={mobileNumber.value}
               type="text"
               onChange={(e) => {
-                setMobileNumber({ ...mobileNumber, valuee: e.target.value });
+                setMobileNumber({ ...mobileNumber, value: e.target.value });
               }}
               onBlur={() => {
                 setMobileNumber({ ...mobileNumber, isTouched: true });
               }}
               placeholder="Mobile Number"
             />
-            {(mobileNumber.isTouched && !validateMobileNumber(mobileNumber.value) &&
-            mobileNumber.value.length <10) ? (
+            {mobileNumber.isTouched &&
+            !validateMobileNumber(mobileNumber.value) &&
+            mobileNumber.value.length < 10 ? (
               <MobileNumberErrorMessage />
             ) : null}
           </div>
@@ -240,11 +247,16 @@ function SignUp() {
             </select>
           </div>
 
-          <button type="submit" disabled={!getIsFormValid()}>
+          <button
+            className="signup-button"
+            type="submit"
+            disabled={!getIsFormValid()}
+          >
             Create account
           </button>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }
