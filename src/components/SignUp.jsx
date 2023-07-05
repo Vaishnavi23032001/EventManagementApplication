@@ -5,8 +5,8 @@ import { validateEmail } from "./utils";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { signup } from "../api/userApi";
 
 function SignUp() {
   const [fullName, setFullName] = useState({
@@ -109,11 +109,10 @@ function SignUp() {
       mobileNumber: mobileNumber.value,
       username: userName.value,
       password: password.value,
-      role: role,
+      roleStatus: role,
     };
-    const apiurl = process.env.REACT_APP_API_URL;
     try {
-      const response = await axios.post(apiurl + "/api/users", data);
+      const response = await signup(data);
       console.log(response);
       toast.success("Account created!", { position: "top-center" });
       clearForm();

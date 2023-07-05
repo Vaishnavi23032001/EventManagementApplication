@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../style/addevent.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { addEvent } from '../api/eventApi';
 
 function AddEvent() {
   const [eventName, setEventName] = useState("");
@@ -15,7 +15,6 @@ function AddEvent() {
 
   const handleEventSubmit = async (e) => {
     e.preventDefault();
-    const apiurl = process.env.REACT_APP_API_URL;
     const eventsData={
       name: eventName,
       date: date,
@@ -25,8 +24,8 @@ function AddEvent() {
       seatsLeft : leftseat,
     }
     try {
-      const response = await axios.post(apiurl + "/api/events", eventsData);
-      console.log("Event added successfully:", response.data);
+      const response = await addEvent(eventsData);
+      console.log('Event added successfully:', response);
       toast.success("Event added successfully!", { position: "top-center" });
       clearForm();
     } catch (error) {

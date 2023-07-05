@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../style/userprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 const AdminProfile = () => {
   const [adminProfile, setAdminProfile] = useState({

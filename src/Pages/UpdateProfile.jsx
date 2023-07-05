@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import "../style/updateprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
-import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import { updategetprofile, updateprofile  } from "../api/userApi";
 
 function UpdateProfile() {
   const [fullName, setFullName] = useState({
@@ -40,17 +41,12 @@ function UpdateProfile() {
     );
   };
 
-  const apiurl = process.env.REACT_APP_API_URL;
   const userId = localStorage.getItem("userId");
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get(apiurl + "/api/users/" + userId, {
-          headers: {
-            "ngrok-skip-browser-warning": "111",
-          },
-        });
-        const { fullName, mobileNumber } = response.data;
+        const response = await updategetprofile(userId);
+        const { fullName, mobileNumber } = response;
         setFullName({ value: fullName, isTouched: false });
         setMobileNumber({ value: mobileNumber, isTouched: false });
       } catch (error) {
@@ -62,16 +58,17 @@ function UpdateProfile() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.patch(apiurl + "/api/users/" + userId, {
-        fullName: fullName.value,
+    const data ={
+      fullName: fullName.value,
         mobileNumber: mobileNumber.value,
-      });
-      console.log(response.data);
-      alert("Update successful");
+    }
+    try {
+      const response = await updateprofile(userId, data)
+      console.log(response);
+      toast.success("Update successful!", { position: "top-center" });
     } catch (error) {
       console.error(error);
-      alert("Failed to update");
+      toast.error("failed to update", { position: "top-center" })
     }
   };
 
@@ -141,6 +138,7 @@ function UpdateProfile() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }

@@ -28,11 +28,7 @@ const ForgetResetPassword = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Perform the forgot password logic here
-    // Send a request to the server to reset the password for the given email address
-
-    // Display a success or error message based on the response from the server
+    //forgot password logic here
   };
 
   return (

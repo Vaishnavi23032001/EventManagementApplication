@@ -61,8 +61,8 @@ const EventTable = ({ events_data }) => {
             <td>{item.date}</td>
             <td>{item.time}</td>
             <td>{item.location}</td>
-            <td>{item.leftseats}</td>
-            <td>{item.totalseats}</td>
+            <td>{item.seatsLeft}</td>
+            <td>{item.totalSeats}</td>
             <td>
               <button
                 className={`bookmark-button ${

@@ -1,78 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/images.jpg";
 import "../style/userpage.css";
 import AdminEventTable from "./AdminEventTable";
 import AdminSidebar from "./AdminSidebar";
-import { AiFillPlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { deleteEvent, getAllEvent } from '../api/eventApi';
 
 const Event = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const keys = ["name"];
+
   const search = (events_data) => {
+    if (!events_data) {
+      return [];
+    }
     return events_data.filter((item) =>
       keys.some((key) => item[key].toLowerCase().includes(searchQuery))
     );
   };
-  const events = [
-    {
-      id: 1,
-      name: "Event 1",
-      date: "2023-06-01",
-      time: "10:00 AM",
-      location: "Location 1",
-      totalseats: "100",
-      leftseats: "0",
-    },
-    {
-      id: 2,
-      name: "Event 2",
-      date: "2023-06-01",
-      time: "10:00 AM",
-      location: "Location 2",
-      totalseats: "100",
-      leftseats: "0",
-    },
-    {
-      id: 3,
-      name: "Event 3",
-      date: "2023-06-01",
-      time: "10:00 AM",
-      location: "Location 2",
-      totalseats: "100",
-      leftseats: "0",
-    },
-    {
-      id: 4,
-      name: "Event 4",
-      date: "2023-06-01",
-      time: "10:00 AM",
-      location: "Location 4",
-      totalseats: "100",
-      leftseats: "0",
-    },
-    {
-      id: 5,
-      name: "Event 4",
-      date: "2023-06-01",
-      time: "10:00 AM",
-      location: "Location 4",
-      totalseats: "100",
-      leftseats: "0",
-    },
-    {
-      id: 6,
-      name: "Event 4",
-      date: "2023-06-01",
-      time: "10:00 AM",
-      location: "Location 4",
-      totalseats: "100",
-      leftseats: "0",
-    },
-  ];
-  const handlePlusEvent = () => {
-    console.log("add event");
+  const [eventsData, setEventsData] = useState([]);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const allEvents = await getAllEvent();
+        setEventsData(allEvents);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+    fetchEvents();
+  }, []);
+ 
+  const onDelete = async (eventId) => {
+    try {
+      await deleteEvent(eventId);
+      setEventsData(eventsData.filter((event) => event.id !== eventId));
+      toast.success("Event deleted!!",{ position: "top-center" });
+      console.log("Event deleted successfully");
+    } catch (error) {
+      console.error("Error deleting event:", error);
+      toast.error("Error!", { position: "top-center" });
+    }
   };
+
   return (
     <>
       <div className="event_page">
@@ -101,20 +72,20 @@ const Event = () => {
         <section className="table-section">
           <div>
             <h1 className="table-heading">Upcoming Events</h1>
-            {<AdminEventTable events_data={search(events)} />}
+            {<AdminEventTable events_data={search(eventsData)} onDelete={onDelete}/>}
           </div>
         </section>
         <section>
           <div id="addbutton">
             <Link to="/AddEvent">
-              <button className="add-button" onClick={() => handlePlusEvent()}>
+              <button className="add-button">
                 Add Event
-                {/* <AiFillPlusCircle /> */}
               </button>
             </Link>
           </div>
         </section>
       </div>
+      <ToastContainer/>
     </>
   );
 };

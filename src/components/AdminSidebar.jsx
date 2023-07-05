@@ -18,7 +18,12 @@ function Sidebar() {
             User List
           </Link>
           <Link className="menu-item" to="/">
-            Log out
+            <button
+              // onClick={logout()}
+              style={{ color: "black", width: "5rem" }}
+            >
+              Log out
+            </button>
           </Link>
         </Menu>
       </div>
