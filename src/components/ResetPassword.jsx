@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../style/forgotpassword.css";
 import { ImCross } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
+
 const ForgotPassword = () => {
   const [oldPassword, setoldPassword] = useState({
     value: "",
@@ -30,6 +32,12 @@ const ForgotPassword = () => {
     event.preventDefault();
     // Perform the forgot password logic here
   };
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/LoginForm");
+    }
+  }, []);
 
   return (
     <div className="forgot-password-body">

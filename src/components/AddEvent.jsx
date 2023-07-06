@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/addevent.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { toast, ToastContainer } from "react-toastify";
-import { addEvent } from '../api/eventApi';
+import { addEvent } from "../api/eventApi";
+import { useNavigate } from "react-router-dom";
 
 function AddEvent() {
   const [eventName, setEventName] = useState("");
@@ -11,21 +12,28 @@ function AddEvent() {
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
   const [totalseat, setTotalSeat] = useState("");
-  const [leftseat, setLeftSeat] = useState("");
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (localStorage.getItem("token") && localStorage.getItem("role") === "USER") {
+      navigate("/LoginForm");
+    }
+  }, []);
+  const id=localStorage.getItem("userId");
   const handleEventSubmit = async (e) => {
     e.preventDefault();
-    const eventsData={
+    const eventsData = {
       name: eventName,
       date: date,
       time: time,
       location: location,
       totalSeats: totalseat,
-      seatsLeft : leftseat,
-    }
+      createdBy: id,
+    };
+    
     try {
       const response = await addEvent(eventsData);
-      console.log('Event added successfully:', response);
+      console.log("Event added successfully:", response);
       toast.success("Event added successfully!", { position: "top-center" });
       clearForm();
     } catch (error) {
@@ -39,7 +47,6 @@ function AddEvent() {
     setTime("");
     setLocation("");
     setTotalSeat("");
-    setLeftSeat("");
   };
   return (
     <>
@@ -83,14 +90,6 @@ function AddEvent() {
               id="location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              required
-            />
-            <label htmlFor="leftseat">Left Seat</label>
-            <input
-              type="number"
-              id="seat"
-              value={leftseat}
-              onChange={(e) => setLeftSeat(e.target.value)}
               required
             />
             <label htmlFor="seat">Total Seat</label>

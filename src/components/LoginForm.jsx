@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/loginform.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -14,7 +14,7 @@ const LoginForm = () => {
     value: "",
     isTouched: false,
   });
-
+  const navigate = useNavigate();
   const UsernameErrorMessage = () => {
     return (
       <p className="username-fielderror-login">
@@ -44,7 +44,6 @@ const LoginForm = () => {
       isTouched: false,
     });
   };
-  const navigate = useNavigate();
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -57,12 +56,23 @@ const LoginForm = () => {
       console.log(response);
       localStorage.setItem("token", response.token);
       localStorage.setItem("userId", response.userId);
+      localStorage.setItem("role", response.role);
+
+      if (
+        localStorage.getItem("token") &&
+        localStorage.getItem("role") === "USER"
+      ) {
+        navigate("/UserPage");
+      } else if (
+        localStorage.getItem("token") &&
+        localStorage.getItem("role") === "ADMIN"
+      ) {
+        navigate("/AdminPage");
+      }
       toast.success("Login successful!", { position: "top-center" });
       clearForm();
-      navigate("/UserPage");
     } catch (error) {
       console.log(error);
-      console.log("error occured while local storage set");
       toast.error("Data not found!", { position: "top-center" });
     }
   };
@@ -129,7 +139,6 @@ const LoginForm = () => {
             >
               Login
             </button>
-            <Link to="/AdminPage">Admin</Link>
           </form>
         </div>
       </div>
