@@ -11,7 +11,6 @@ function UpdateEvent() {
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
   const [seat, setSeat] = useState("");
-  const [leftseat, setLeftSeat] = useState("");
   const { eventId } = useParams();
 
   useEffect(() => {
@@ -22,7 +21,6 @@ function UpdateEvent() {
         setDate(eventData.date);
         setTime(eventData.time);
         setLocation(eventData.location);
-        setLeftSeat(eventData.seatsLeft);
         setSeat(eventData.totalSeats);
       } catch (error) {
         console.error(error);
@@ -39,7 +37,6 @@ function UpdateEvent() {
         date: date,
         time: time,
         location: location,
-        seatsLeft: leftseat,
         totalSeats: seat,
       };
       const response = await updateEvent(eventId, eventData);
@@ -90,13 +87,6 @@ function UpdateEvent() {
               id="location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-            />
-            <label htmlFor="leftseat">Left Seat</label>
-            <input
-              type="number"
-              id="seat"
-              value={leftseat}
-              onChange={(e) => setLeftSeat(e.target.value)}
             />
             <label htmlFor="seat">Total Seat</label>
             <input

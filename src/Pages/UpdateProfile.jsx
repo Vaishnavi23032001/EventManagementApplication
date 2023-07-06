@@ -4,7 +4,8 @@ import "../style/updateprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { toast, ToastContainer } from "react-toastify";
-import { updategetprofile, updateprofile  } from "../api/userApi";
+import { updategetprofile, updateprofile } from "../api/userApi";
+import { useNavigate } from "react-router-dom";
 
 function UpdateProfile() {
   const [fullName, setFullName] = useState({
@@ -36,21 +37,28 @@ function UpdateProfile() {
 
   const getIsFormValid = () => {
     return (
-      fullName.value && fullName.value.length >= 5 &&
+      fullName.value &&
+      fullName.value.length >= 5 &&
       validateMobileNumber(mobileNumber.value)
     );
   };
 
   const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUserProfile = async () => {
-      try {
-        const response = await updategetprofile(userId);
-        const { fullName, mobileNumber } = response;
-        setFullName({ value: fullName, isTouched: false });
-        setMobileNumber({ value: mobileNumber, isTouched: false });
-      } catch (error) {
-        console.error(error);
+      if (!localStorage.getItem("token")) {
+        navigate("/LoginForm");
+      } else {
+        try {
+          const response = await updategetprofile(userId);
+          const { fullName, mobileNumber } = response;
+          setFullName({ value: fullName, isTouched: false });
+          setMobileNumber({ value: mobileNumber, isTouched: false });
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
     fetchUserProfile();
@@ -58,17 +66,17 @@ function UpdateProfile() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const data ={
+    const data = {
       fullName: fullName.value,
-        mobileNumber: mobileNumber.value,
-    }
+      mobileNumber: mobileNumber.value,
+    };
     try {
-      const response = await updateprofile(userId, data)
+      const response = await updateprofile(userId, data);
       console.log(response);
       toast.success("Update successful!", { position: "top-center" });
     } catch (error) {
       console.error(error);
-      toast.error("failed to update", { position: "top-center" })
+      toast.error("failed to update", { position: "top-center" });
     }
   };
 
@@ -118,8 +126,8 @@ function UpdateProfile() {
               placeholder="Mobile Number"
             />
 
-            {(mobileNumber.isTouched &&
-            !validateMobileNumber(mobileNumber.value) )&&
+            {mobileNumber.isTouched &&
+            !validateMobileNumber(mobileNumber.value) &&
             mobileNumber.value.length < 10 ? (
               <MobileNumberErrorMessage />
             ) : null}

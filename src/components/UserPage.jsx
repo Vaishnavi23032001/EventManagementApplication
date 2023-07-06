@@ -9,7 +9,6 @@ import { getAllEvent } from "../api/eventApi";
 const UserPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const keys = ["name"];
-
   const search = (events_data) => {
     if (!events_data) {
       return [];
@@ -18,19 +17,23 @@ const UserPage = () => {
       keys.some((key) => item[key].toLowerCase().includes(searchQuery))
     );
   };
-
   const [eventsData, setEventsData] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchEvents = async () => {
       if (!localStorage.getItem("token")) {
         navigate("/LoginForm");
-      }
-      try {
-        const allEvents = await getAllEvent();
-        setEventsData(allEvents);
-      } catch (error) {
-        console.error("Error fetching events:", error);
+      } else {
+        try {
+          const allEvents = await getAllEvent();
+          setEventsData(allEvents);
+        } catch (error) {
+          if (error.response.status === 401 || error.response.status === 402 ||error.response.status === 403) {
+            console.log("autherization error", error);
+          } else {
+            console.error("Error fetching events:", error);
+          }
+        }
       }
     };
     fetchEvents();

@@ -3,6 +3,8 @@ import "../style/userprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { toast, ToastContainer } from "react-toastify";
+import { adminprofile } from "../api/eventApi";
+import { useNavigate } from "react-router-dom";
 const AdminProfile = () => {
   const [adminProfile, setAdminProfile] = useState({
     fullName: "",
@@ -10,6 +12,28 @@ const AdminProfile = () => {
     mobileNumber: "",
     username: "",
   });
+  const navigate = useNavigate();
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    const fetchUserProfile = async () => {
+      if (
+        localStorage.getItem("token") &&
+        localStorage.getItem("role") === "USER"
+      ) {
+        navigate("/LoginForm");
+      } else {
+        try {
+          const response = await adminprofile(userId);
+          setAdminProfile(response);
+        } catch (error) {
+          console.log(error);
+          toast.error("Error!", { position: "top-center" });
+        }
+      }
+    };
+    fetchUserProfile();
+  }, []);
+
   return (
     <>
       <div className="user-profile-body">

@@ -29,7 +29,11 @@ function SignUp() {
     value: "",
     isTouched: false,
   });
-  const [role, setRole] = useState("role");
+  const UserRole = {
+    ADMIN: "ADMIN",
+    USER: "USER",
+  };  
+  const [role, setRole] = useState(UserRole.USER);
 
   const FullnameErrorMessage = () => {
     return (
@@ -109,7 +113,7 @@ function SignUp() {
       mobileNumber: mobileNumber.value,
       username: userName.value,
       password: password.value,
-      roleStatus: role,
+      role: role,
     };
     try {
       const response = await signup(data);
@@ -240,9 +244,8 @@ function SignUp() {
               Role <sup>*</sup>
             </label>
             <select value={role} onChange={(e) => setRole(e.target.value)}>
-              <option value="role">Role</option>
-              <option value="Admin">Admin</option>
-              <option value="User">User</option>
+              <option value={UserRole.ADMIN}>ADMIN</option>
+              <option value={UserRole.USER}>USER</option>
             </select>
           </div>
 

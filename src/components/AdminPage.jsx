@@ -4,8 +4,9 @@ import "../style/userpage.css";
 import AdminEventTable from "./AdminEventTable";
 import AdminSidebar from "./AdminSidebar";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { deleteEvent, getAllEvent } from '../api/eventApi';
+import { deleteEvent, getAllEvent } from "../api/eventApi";
 
 const Event = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,24 +21,31 @@ const Event = () => {
     );
   };
   const [eventsData, setEventsData] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchEvents = async () => {
-      try {
-        const allEvents = await getAllEvent();
-        setEventsData(allEvents);
-      } catch (error) {
-        console.error("Error fetching events:", error);
+      if (
+        localStorage.getItem("token") &&
+        localStorage.getItem("role") === "USER"
+      ) {
+        navigate("/LoginForm");
+      } else {
+        try {
+          const allEvents = await getAllEvent();
+          setEventsData(allEvents);
+        } catch (error) {
+          console.error("Error fetching events:", error);
+        }
       }
     };
     fetchEvents();
   }, []);
- 
+
   const onDelete = async (eventId) => {
     try {
       await deleteEvent(eventId);
       setEventsData(eventsData.filter((event) => event.id !== eventId));
-      toast.success("Event deleted!!",{ position: "top-center" });
-      console.log("Event deleted successfully");
+      toast.success("Event deleted!!", { position: "top-center" });
     } catch (error) {
       console.error("Error deleting event:", error);
       toast.error("Error!", { position: "top-center" });
@@ -68,24 +76,26 @@ const Event = () => {
             />
           </div>
         </nav>
-
         <section className="table-section">
           <div>
             <h1 className="table-heading">Upcoming Events</h1>
-            {<AdminEventTable events_data={search(eventsData)} onDelete={onDelete}/>}
+            {
+              <AdminEventTable
+                events_data={search(eventsData)}
+                onDelete={onDelete}
+              />
+            }
           </div>
         </section>
         <section>
           <div id="addbutton">
             <Link to="/AddEvent">
-              <button className="add-button">
-                Add Event
-              </button>
+              <button className="add-button">Add Event</button>
             </Link>
           </div>
         </section>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };

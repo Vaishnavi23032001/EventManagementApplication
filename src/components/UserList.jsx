@@ -4,16 +4,23 @@ import "../style/userpage.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { userlist } from "../api/userApi";
+import { useNavigate } from "react-router-dom";
 
 function UserList() {
   const [userList, setUserList] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const userList = async () => {
-      try {
-        const response = await userlist();
-        setUserList(response);
-      } catch (error) {
-        console.log(error);
+      if (!localStorage.getItem("token")) {
+        navigate("/LoginForm");
+      } else {
+        try {
+          const response = await userlist();
+          setUserList(response);
+        } catch (error) {
+          console.log(error);
+        }
       }
     };
     userList();

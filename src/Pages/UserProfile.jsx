@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../style/userprofile.css";
 import { Link } from "react-router-dom";
 import { ImCross } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { userprofile } from "../api/userApi";
 const UserProfile = () => {
@@ -11,21 +12,24 @@ const UserProfile = () => {
     mobileNumber: "",
     username: "",
   });
+  const navigate = useNavigate();
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     const fetchUserProfile = async () => {
-      try {
-        const response = await userprofile(userId);
-        setUserProfile(response);
-      } catch (error) {
-        console.log(error);
-        toast.error("Error!", { position: "top-center" });
+      if (!localStorage.getItem("token")) {
+        navigate("/LoginForm");
+      } else {
+        try {
+          const response = await userprofile(userId);
+          setUserProfile(response);
+        } catch (error) {
+          console.log(error);
+        }
       }
     };
     fetchUserProfile();
-  },[]);
-  
-  
+  }, []);
+
   return (
     <>
       <div className="user-profile-body">
